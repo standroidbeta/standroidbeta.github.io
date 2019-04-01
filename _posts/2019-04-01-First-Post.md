@@ -6,5 +6,4 @@ bigimg: /img/path.jpg
 tags: [new, test]
 ---
 
-This my first blog post as a noob Data Scientist. I hope to have much more insightful and interesting post's about the
-projects that i am working on in the future.
+This my first blog post about my journey into Data Science. I hope to have much more insightful and interesting post's about the projects that i am working on in the future.
