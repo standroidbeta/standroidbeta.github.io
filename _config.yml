@@ -42,9 +42,9 @@ avatar: "/img/standroidbeta.jpg"
 
 # Personalize the colors in your website. Colour values can be any valid CSS colour
 
-navbar-col: "#1E3760"
+navbar-col: "#F7F5F2"
 navbar-text-col: "#404040"
-navbar-children-col: "#1E3760"
+navbar-children-col: "#F7F5F2"
 page-col: "#FFFFFF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
