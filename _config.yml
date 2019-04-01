@@ -44,7 +44,7 @@ avatar: "/img/standroidbeta.jpg"
 
 navbar-col: "#1E3760"
 navbar-text-col: "#F7F5F2"
-navbar-children-col: "#F7F5F2"
+navbar-children-col: "#F5F5F5"
 page-col: "#FFFFFF"
 link-col: "#008AFF"
 hover-col: "#0085A1"
