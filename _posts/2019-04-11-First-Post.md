@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why I am making a career change to Data Science
-subtitle: Read full articla on Medium
+subtitle: Read full article on Medium
 bigimg: /img/path.jpg
 tags: [new, career, data science]
 ---
