@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Why I am making a career change to Data Science
-subtitle: Test example post.
+subtitle: Read full articla on Medium
 bigimg: /img/path.jpg
 tags: [new, career, data science]
 ---
