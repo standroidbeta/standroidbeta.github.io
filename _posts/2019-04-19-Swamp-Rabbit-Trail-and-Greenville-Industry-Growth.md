@@ -219,3 +219,6 @@ Public administration | 11325 | 11051 | 11225 | 9388
     <a href="https://plot.ly/~standroidbeta/2/?share_key=1VTN9PQcLcffqce9Eqhj1e" target="_blank" title="gvl-bar" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/2.png?share_key=1VTN9PQcLcffqce9Eqhj1e" alt="gvl-bar" style="max-width: 100%;width: 1200px;"  width="1200" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
 
+## Conclusion
+
+Due there there being a steddy Industry Workforce growth in Greenvile, SC and steddy Trail use growth. I do believe that the Swamp Rabbit Trail has positive Economic Impact.
