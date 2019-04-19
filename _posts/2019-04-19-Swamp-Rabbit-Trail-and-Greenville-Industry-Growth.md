@@ -48,7 +48,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 
 **Note:** Years 2015 and 2016 were not a part of the survey. The values reflected for those years are predicted values since the data for those years is not available.
 
-Using the data from that dataframe, I used Plotly and to code one line graph to show the growth of path usage and the other to show economic impact.
+Using the data from that dataframe, I used Plotly(because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
 
 ```
 trace = go.Scatter(
@@ -88,3 +88,39 @@ py.iplot(fig, filename='Traildata Users-line')
 <div>
     <a href="https://plot.ly/~standroidbeta/4/?share_key=2w7TnUYYceCUXvxIJwwDwj" target="_blank" title="Traildata Users-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/4.png?share_key=2w7TnUYYceCUXvxIJwwDwj" alt="Traildata Users-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
+
+```
+trace = go.Scatter(
+    x = traildata[['Greenville Health System Swamp Rabbit Survey Year']],
+    y = traildata[['Total Economic Impact']]
+)
+
+data = [trace]
+layout = go.Layout(
+    title=go.layout.Title(
+        text="<b>Greenville's Swamp Rabbit Trail Economic Impact Over Six Years</b>",
+        xref='paper',
+        x=0
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Economic Years',
+            font=dict(
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Economic in US Dollars by Millions',
+            font=dict(
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+fig = go.Figure(data=data, layout=layout)
+py.iplot(fig, filename='Traildata Users-line')
+```
