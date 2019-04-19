@@ -47,3 +47,42 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 2016* | 618767 | 9008291
 
 **Note:** Years 2015 and 2016 were not a part of the survey. The values reflected for those years are predicted values since the data for those years is not available.
+
+Using the data from that dataframe, I used Plotly and to code one line graph to show the growth of path usage and the other to show economic impact.
+
+```
+trace = go.Scatter(
+    x = traildata[['Greenville Health System Swamp Rabbit Survey Year']],
+    y = traildata[['Total Users']]
+)
+
+data = [trace]
+layout = go.Layout(
+    title=go.layout.Title(
+        text="<b>Greenville's Swamp Rabbit Trail Surveyed Users By Year</b>",
+        xref='paper',
+        x=0
+    ),
+    xaxis=go.layout.XAxis(
+        title=go.layout.xaxis.Title(
+            text='Surveyed Years',
+            font=dict(
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    ),
+    yaxis=go.layout.YAxis(
+        title=go.layout.yaxis.Title(
+            text='Surveyed Users in Thousands',
+            font=dict(
+                size=18,
+                color='#7f7f7f'
+            )
+        )
+    )
+)
+fig = go.Figure(data=data, layout=layout)
+py.iplot(fig, filename='Traildata Users-line')
+```
+
