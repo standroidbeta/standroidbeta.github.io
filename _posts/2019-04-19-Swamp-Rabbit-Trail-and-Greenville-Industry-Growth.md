@@ -30,9 +30,9 @@ Using data from the Greenvile Rec's Google Drive I created a this Dataframe:
 import pandas as pd
 
 traildata = pd.read_csv('https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/Swamp-Rabbit%20Economic-Impact-Results.csv')
-traildata```
+traildata
 
-```traildata = traildata.drop(columns=['Users Outside of Greenville County',	'Percentage Outside of Greenville County',	
+traildata = traildata.drop(columns=['Users Outside of Greenville County',	'Percentage Outside of Greenville County',	
                                     'Users outside 50 mile radius of 29617',	'Percentage of Out of County Users that are outside a 50 mile Radius', 
                                     'Percentage of Total Users that are outside a 50 mile radius'])
 traildata```
