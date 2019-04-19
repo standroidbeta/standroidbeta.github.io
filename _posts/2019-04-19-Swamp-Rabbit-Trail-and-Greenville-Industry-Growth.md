@@ -10,13 +10,13 @@ tags: [Greenville South Carolina, Economics, Swamp Rabbit Trail]
 This is my first data science project where I have compiled data Greenville, SC’s Swamp Rabbit Trail Survey data and Industry Growth by Employees in the workforce to evaluate any potential for correlation of having a bike/walk trail can stimulate economic growth for a Metro area.
 
 ## A little background
-Greenville South Carolina is located in near the upper northwest of the state. It is the largest county in the state and is growing both in population and economically. Greenville’s growth and influence has been a stimulating force to its surrounding city and county neighbors as well.
+Greenville South Carolina is located near the upper northwest of the state. It is the largest county in the state and is growing both in population and economically. Greenville’s growth and influence has been a stimulating force to its surrounding city and county neighbors as well.
 
 ![SRT Map](/img/SRT-Map.png)
 
-One of factors in Greenville’s growth is the the Swamp Rabbit Trail. The Swamp Rabbit Trail is a 22 mile multi-use (walking & bicycling) connected greenway network that traverses along the Reedy River. It is an old railroad corridor that connects Greenville city parks to Travelers Rest.
+One of the factors in Greenville’s growth is the Swamp Rabbit Trail. The Swamp Rabbit Trail is a 22 mile multi-use (walking & bicycling) connected greenway network that traverses along the Reedy River. It is an old railroad corridor that connects Greenville city parks to Travelers Rest.
 
-The trail opened up in 2009 and is one of the most popular recreational attractions in the Greenville Metro area. It has been so inspirational that the surrounding counties of Pickens, Anderson, and Spartanburg have also implemented  either bike path or trails. Both the Doodle Trail in Pickens County  connecting the cities Easley to Pickens and the Swamp Rabbit Trail were inspired by the Rails to Trails initiative where communities are repurposing no-longer used train trail routes and converting them to bike/walk trails. Spartanburg has established a in-town bike path system called Bike Town that has a bicycle sharing program call B-Share.
+The trail opened up in 2009 and is one of the most popular recreational attractions in the Greenville Metro area. It has been so inspirational that the surrounding counties of Pickens, Anderson, and Spartanburg have also implemented  either bike paths or trails. Both the Doodle Trail in Pickens County  connecting the cities Easley to Pickens and the Swamp Rabbit Trail were inspired by the Rails to Trails initiative where communities are repurposing no-longer used train rail routes and converting them to bike/walk trails. Spartanburg has established an in-town bike path system called Bike Town that has a bicycle sharing program called B-Share.
 
 ## Here are some data points
 
@@ -54,7 +54,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 
 **Note:** Years 2015 and 2016 were not a part of the survey. The values reflected for those years are predicted values since the data for those years is not available.
 
-Using the data from that dataframe, I used Plotly(because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
+Using the data, I used Plotly (because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
 
 ### Swamp Rabbit Trail Use Code
 ```python
@@ -180,8 +180,6 @@ I find it interesting that although trail usage did not change at all between th
 
 For this data, I sourced it from the US Census website for the years of 2013-2016. Here is the dataframe that that I used:
 
-
-
 ```python
 url = 'https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/2013-2016-ACS-Estimates-Greenville-Metro.csv'
 
@@ -221,4 +219,4 @@ Public administration | 11325 | 11051 | 11225 | 9388
 
 ## Conclusion
 
-Due there there being a steddy Industry Workforce growth in Greenvile, SC and steddy Trail use growth. I do believe that the Swamp Rabbit Trail has positive Economic Impact.
+Due there there being a steady Industry Workforce growth in Greenvile, SC and steady Trail use growth. I do believe that the Swamp Rabbit Trail has positive Economic Impact. 
