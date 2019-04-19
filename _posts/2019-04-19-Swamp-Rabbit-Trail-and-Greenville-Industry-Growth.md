@@ -24,6 +24,8 @@ Greenville’s Swamp Rabbit Trail had a survey conducted that ran from 2011 to 2
 
 <p><img src='/img/Year 3 Impact Study Key Facts.jpg' alt='Impact Study' title='Impact Study' /></p>
 
+### My Swamp Rabbit Trail Impact Analysis
+
 Using data from the Greenvile Rec's Google Drive I created a this Dataframe:
 
 ```import matplotlib.pyplot as plt
@@ -45,6 +47,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 2014 | 501236 | 6974198
 2015* | 572197 | 7785991
 2016* | 618767 | 9008291
+
 
 **Note:** Years 2015 and 2016 were not a part of the survey. The values reflected for those years are predicted values since the data for those years is not available.
 
@@ -120,3 +123,27 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 ```
+The Economic data in used in with is data is based on the this survey report summary as follows:
+
+#### _Summary of Business Interviews for Year 4_
+Nineteen managers/owners of retail businesses directly abutting and/or within close proximity to a GHS
+SRT access point were interviewed in Year 3, however this number increased to 27 in Year 4, including
+six retail bicycle shops.
+
+Selection criteria for the business interviews were as follows in Year 4:
+* Retail business (i.e., food/entertainment; clothing/equipment; services).
+* Must directly abut GHS SRT or be located within 250 yards of a GHS SRT access point. The trail segment for the business interviews was from Travelers Rest to Linky Stone Park in downtown Greenville.
+
+Questions for the business interviews in Year 4, similar to Years 1-3 were taken from Stewart and Barr 4
+examining promotion methods used by hospitality-related firms in close proximity to rail/trails. The
+business interviews were primarily designed to determine: **_If businesses located near the GHS SRT
+access points have observed any change in business after the trail was built?_**
+
+Overall, the GHS SRT has a significant impact on business since inception. The managers/owners
+interviewed in Year 4 were asked a host of questions with the focus on the advantages and disadvantages
+of having a business in close proximity to the GHS SRT.
+
+* The businesses surveyed in Year 4 reported increases in sales/revenue ranging from 10% to as
+high as 100% with an average of 40% of sales/revenue linked to trail users.
+* Many new businesses opened their doors in Year 4 specifically selecting a site in close proximity
+to GHS SRT.
