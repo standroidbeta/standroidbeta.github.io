@@ -124,3 +124,6 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 ```
+<div>
+    <a href="https://plot.ly/~standroidbeta/6/?share_key=F5abBMowELWEtSF3gS3cNP" target="_blank" title="Traildata_Economic_Impact-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/6.png?share_key=F5abBMowELWEtSF3gS3cNP" alt="Traildata_Economic_Impact-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+</div>
