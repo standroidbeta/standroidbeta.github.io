@@ -219,4 +219,8 @@ Public administration | 11325 | 11051 | 11225 | 9388
 
 ## Conclusion
 
-Due there there being a steady Industry Workforce growth in Greenvile, SC and steady Trail use growth. I do believe that the Swamp Rabbit Trail has positive Economic Impact. 
+
+1. Due there being a steady Industry Workforce growth in Greenville, SC and steady Trail use growth. I do believe that the Swamp Rabbit Trail has positive Economic Impact.
+
+2. Gathering up-to-date data for this project was a challenge. I found that this type of data collection and analysis does not happen and is not as complete as it could be. This is a concern because I feel that if there was more current like this to produce and publish, it can help to show that there how economically vibrant and healthy our communities are.
+You can also read this post with the dataset I used on my GitHub Pages site:
