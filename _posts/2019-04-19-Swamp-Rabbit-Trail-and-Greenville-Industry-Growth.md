@@ -53,8 +53,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 
 Using the data from that dataframe, I used Plotly(because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
 
-```
-trace = go.Scatter(
+```trace = go.Scatter(
     x = traildata[['Greenville Health System Swamp Rabbit Survey Year']],
     y = traildata[['Total Users']]
 )
@@ -123,6 +122,7 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 ```
+
 The Economic data in used in with is data is based on the this survey report summary as follows:
 
 #### _Summary of Business Interviews for Year 4_
@@ -156,8 +156,8 @@ I find it interesting that although trail usage did not change at all between th
 
 For this data, I sourced it from the US Census website for the years of 2013-2016. Here is the dataframe that that I used:
 
-```
-url = 'https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/2013-2016-ACS-Estimates-Greenville-Metro.csv'
+
+```url = 'https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/2013-2016-ACS-Estimates-Greenville-Metro.csv'
 
 greenville = pd.read_csv(url)
 
