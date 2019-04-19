@@ -93,7 +93,9 @@ fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 
 ```
-<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~standroidbeta/4.embed"></iframe>
+<div>
+    <a href="https://plot.ly/~standroidbeta/8/?share_key=TofOO2mzndpf1MUB2mAoUF" target="_blank" title="Traildata_Users-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/8.png?share_key=TofOO2mzndpf1MUB2mAoUF" alt="Traildata_Users-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+</div>
 
 ```python
 
