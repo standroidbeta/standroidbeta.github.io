@@ -194,5 +194,20 @@ greenville_est = greenville[['Industry', '2013 Total Employee Estimate', '2014 T
 
 greenville_est
 ```
+### Greenville Industry Workforce Growth Dataframe
 
-
+Industry | 2013 Total Employee Estimate | 2014 Total Employee Estimate | 2015 Total Employee Estimate	2016 | Total Employee Estimate
+-------- | ---------------------------- | ---------------------------- | -------------------------------- | ------------------------ 
+Agriculture, forestry, fishing and hunting, and mining | 1532 | 2048 | 2565 | 4941
+Construction | 20386 | 22612 | 23499 | 24735
+Manufacturing | 69640 | 70226 | 77771 | 76038
+Wholesale trade | 11753 | 15808 | 10103 | 11980
+Retail trade | 41161 | 45191 | 42335 | 49169
+Transportation and warehousing, and utilities | 15582 | 15725 | 15451 | 17678
+Information | 6842 | 5777 | 9376 | 5561
+Finance and insurance, and real estate and rental and leasing | 18941 | 18533 | 20604 | 21543
+Professional, scientific, and management, and administrative and waste management services | 37180 | 41816 | 40285 | 45559
+Educational services, and health care and social assistance | 85060 | 82924 | 88745 | 88454
+Arts, entertainment, and recreation, and accommodation and food services | 39696 | 37300 | 34119 | 37026
+Other services, except public administration | 18761 | 20273 | 20591 | 22097
+Public administration | 11325 | 11051 | 11225 | 9388
