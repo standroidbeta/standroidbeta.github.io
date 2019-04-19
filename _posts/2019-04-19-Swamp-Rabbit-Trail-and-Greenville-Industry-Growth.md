@@ -37,4 +37,11 @@ traildata = traildata.drop(columns=['Users Outside of Greenville County',	'Perce
                                     'Percentage of Total Users that are outside a 50 mile radius'])
 traildata
 ```
-Test
+	Greenville Health System Swamp Rabbit Survey Year	|Total Users	|Total Economic Impact
+  ------------------------------------------------- |-------------|----------------------
+2011|	359314|	3232389
+2012|	461299|	3858397
+2013|	501236|	4855974
+2014|	501236|	6974198
+2015|	572197|	7785991
+5	2016	618767	9008291
