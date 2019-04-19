@@ -147,3 +147,24 @@ of having a business in close proximity to the GHS SRT.
 high as 100% with an average of 40% of sales/revenue linked to trail users.
 * Many new businesses opened their doors in Year 4 specifically selecting a site in close proximity
 to GHS SRT.
+
+## My Assertions of the trail data alone
+
+I find it interesting that although trail usage did not change at all between the years 2013 and 2014, the revenue of the retail businesses continued to grow. I believe that this is a strong indication of people moving to the area finding financial stability and growth.
+
+## Greenville's economic growth by industry workforce analysis
+
+For this data, I sourced it from the US Census website for the years of 2013-2016. Here is the dataframe that that I used:
+
+```
+url = 'https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/2013-2016-ACS-Estimates-Greenville-Metro.csv'
+
+greenville = pd.read_csv(url)
+
+greenville
+
+greenville_est = greenville[['Industry', '2013 Total Employee Estimate', '2014 Total Employee Estimate', 
+                            '2015 Total Employee Estimate', '2016 Total Employee Estimate']]
+
+greenville_est
+```
