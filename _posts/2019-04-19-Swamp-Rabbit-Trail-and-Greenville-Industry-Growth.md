@@ -211,3 +211,11 @@ Educational services, and health care and social assistance | 85060 | 82924 | 88
 Arts, entertainment, and recreation, and accommodation and food services | 39696 | 37300 | 34119 | 37026
 Other services, except public administration | 18761 | 20273 | 20591 | 22097
 Public administration | 11325 | 11051 | 11225 | 9388
+
+
+### Greenville Industry Workforce Growth Graph
+
+<div>
+    <a href="https://plot.ly/~standroidbeta/2/?share_key=1VTN9PQcLcffqce9Eqhj1e" target="_blank" title="gvl-bar" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/2.png?share_key=1VTN9PQcLcffqce9Eqhj1e" alt="gvl-bar" style="max-width: 100%;width: 1200px;"  width="1200" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+</div>
+
