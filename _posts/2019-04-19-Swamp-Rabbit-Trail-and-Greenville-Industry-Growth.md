@@ -56,7 +56,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 
 Using the data from that dataframe, I used Plotly(because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
 
-
+### Swamp Rabbit Trail Use Code
 ```python
 
 trace = go.Scatter(
@@ -95,13 +95,13 @@ py.iplot(fig, filename='Traildata Users-line')
 
 ```
 
-
+### Swamp Rabbit Trail Use Graph
 <div>
     <a href="https://plot.ly/~standroidbeta/8/?share_key=TofOO2mzndpf1MUB2mAoUF" target="_blank" title="Traildata_Users-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/8.png?share_key=TofOO2mzndpf1MUB2mAoUF" alt="Traildata_Users-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
 
 
-
+### Swamp Rabbit Trail Use Code
 ```python
 
 trace = go.Scatter(
@@ -140,7 +140,7 @@ py.iplot(fig, filename='Traildata Users-line')
 
 ```
 
-
+### Swamp Rabbit Trail Economic Graph
 <div>
     <a href="https://plot.ly/~standroidbeta/6/?share_key=F5abBMowELWEtSF3gS3cNP" target="_blank" title="Traildata_Economic_Impact-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/6.png?share_key=F5abBMowELWEtSF3gS3cNP" alt="Traildata_Economic_Impact-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
