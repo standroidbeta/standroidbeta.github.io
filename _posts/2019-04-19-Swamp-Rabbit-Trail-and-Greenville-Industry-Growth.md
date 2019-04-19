@@ -85,5 +85,4 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 ```
-https://plot.ly/~standroidbeta/4/greenvilles-swamp-rabbit-trail-economic-impact-over-six-years/- automatic!
-[Plotly](https://plot.ly/~standroidbeta/4/greenvilles-swamp-rabbit-trail-economic-impact-over-six-years/)
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plot.ly/~standroidbeta/4.embed"></iframe>
