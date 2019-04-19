@@ -56,6 +56,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 
 Using the data from that dataframe, I used Plotly(because of its interactive tools) and to code one line graph to show the growth of path usage and the other to show economic impact.
 
+
 ```python
 
 trace = go.Scatter(
@@ -93,9 +94,13 @@ fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 
 ```
+
+
 <div>
     <a href="https://plot.ly/~standroidbeta/8/?share_key=TofOO2mzndpf1MUB2mAoUF" target="_blank" title="Traildata_Users-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/8.png?share_key=TofOO2mzndpf1MUB2mAoUF" alt="Traildata_Users-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
+
+
 
 ```python
 
@@ -134,9 +139,13 @@ fig = go.Figure(data=data, layout=layout)
 py.iplot(fig, filename='Traildata Users-line')
 
 ```
+
+
 <div>
     <a href="https://plot.ly/~standroidbeta/6/?share_key=F5abBMowELWEtSF3gS3cNP" target="_blank" title="Traildata_Economic_Impact-line" style="display: block; text-align: center;"><img src="https://plot.ly/~standroidbeta/6.png?share_key=F5abBMowELWEtSF3gS3cNP" alt="Traildata_Economic_Impact-line" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
 </div>
+
+
 
 The Economic data in used in with is data is based on the this survey report summary as follows:
 
@@ -172,6 +181,7 @@ I find it interesting that although trail usage did not change at all between th
 For this data, I sourced it from the US Census website for the years of 2013-2016. Here is the dataframe that that I used:
 
 
+
 ```python
 url = 'https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/2013-2016-ACS-Estimates-Greenville-Metro.csv'
 
@@ -184,3 +194,5 @@ greenville_est = greenville[['Industry', '2013 Total Employee Estimate', '2014 T
 
 greenville_est
 ```
+
+
