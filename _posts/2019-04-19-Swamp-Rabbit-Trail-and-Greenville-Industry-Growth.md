@@ -24,5 +24,4 @@ This trail opened up in 2009 and is one of the most popular recreational attract
 
 Greenville’s Swamp Rabbit Trail had a survey conducted that ran from 2011 to 2014 to analyze the community Impact. Here is an infographic from that study:
 
-![Year 3 Impact Study Key Facts](/img/Year 3 Impact Study Key Facts.jpg)
 <p><img src='/img/Year 3 Impact Study Key Facts.jpg' alt='Impact Study' title='Impact Study' /></p>
