@@ -12,7 +12,7 @@ This is my first data science project where I have compiled data Greenville, SC�
 ## A little background
 Greenville South Carolina is located in near the upper northwest of the state. It is the largest county in the and is growing both in population and economically, Greenville’s growth and influence has been a stimulating force to its surrounding city and county neighbors as well.
 
-![SRT Map](/images/SRT-Map.png)
+![SRT Map](/img/SRT-Map.png)
 
 One of factors in Greenville’s growth is the the Swamp Rabbit Trail. The Swamp Rabbit Trail is a 22 mile multi-use (walking & bicycling) connected greenway network that traverses along the Reedy River, an old railroad corridor, and City parks to connect Travelers Rest with the City of Greenville, South Carolina.
 
