@@ -23,3 +23,16 @@ The trail opened up in 2009 and is one of the most popular recreational attracti
 Greenville’s Swamp Rabbit Trail had a survey conducted that ran from 2011 to 2014 to analyze the community Impact. Here is an infographic from that study:
 
 <p><img src='/img/Year 3 Impact Study Key Facts.jpg' alt='Impact Study' title='Impact Study' /></p>
+
+Using data from the Greenvile Rec's Google Drive I created a this Dataframe:
+
+```import matplotlib.pyplot as plt
+import pandas as pd
+
+traildata = pd.read_csv('https://raw.githubusercontent.com/standroidbeta/DS-Unit-1-Sprint-5-Data-Storytelling-Blog-Post/master/DS-Unit-1-Sprint-5-Data-Storytelling-Data/Swamp-Rabbit%20Economic-Impact-Results.csv')
+traildata```
+
+```traildata = traildata.drop(columns=['Users Outside of Greenville County',	'Percentage Outside of Greenville County',	
+                                    'Users outside 50 mile radius of 29617',	'Percentage of Out of County Users that are outside a 50 mile Radius', 
+                                    'Percentage of Total Users that are outside a 50 mile radius'])
+traildata```
