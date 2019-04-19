@@ -43,5 +43,7 @@ Greenville Health System Swamp Rabbit Survey Year | Total Users | Total Economic
 2012 | 461299 | 3858397
 2013 | 501236 | 4855974
 2014 | 501236 | 6974198
-2015 | 572197 | 7785991
-2016 | 618767 | 9008291
+2015* | 572197 | 7785991
+2016* | 618767 | 9008291
+
+**Note:** Years 2015 and 2016 were not a part of the survey. The values reflected for those years are predicted values since the data for those years is not available.
