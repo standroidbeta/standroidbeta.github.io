@@ -265,12 +265,130 @@ She's all saved. Now let's upload this puppy to Kaggle.
 !kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f baseline.csv -m "Xgb baseline"
 ```
 
-
 ## Second Baseline Model Prediction
 
+Alright, are you ready for round duex? I know I am. Lets do it.
+
+We are going to do a good ole' train test split but no feature engineering just yet.
+
+```python
+
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, stratify=y_train, random_state=42)
+```
 ### XGBoost Classification on Test Train Split Dataset with RandomizedSearchCV.
 
+We are going just right into it this time with getting this second baseline model running.
+
+```python
+X_train_encoded = encoder.fit_transform(X_train[features])
+X_val_encoded = encoder.transform(X_val[features])
+# model = RandomForestClassifier(n_estimators=100, n_jobs=-1, random_state=42)
+search = RandomizedSearchCV(
+    estimator=XGBClassifier(n_jobs=-1, random_state=42), 
+    param_distributions=param_distributions, 
+    n_iter=50, 
+    scoring='accuracy', 
+    n_jobs=-1, 
+    cv=2, 
+    verbose=10, 
+    return_train_score=True, 
+    random_state=42
+)
+search.fit(X_train_encoded, y_train)
+search.score(X_val_encoded, y_val)
+
+
+Fitting 2 folds for each of 50 candidates, totalling 100 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   1 tasks      | elapsed:    5.2s
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:   17.5s
+[Parallel(n_jobs=-1)]: Done  17 tasks      | elapsed:   33.3s
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:   59.3s
+[Parallel(n_jobs=-1)]: Done  37 tasks      | elapsed:  1.2min
+[Parallel(n_jobs=-1)]: Done  48 tasks      | elapsed:  1.8min
+[Parallel(n_jobs=-1)]: Done  61 tasks      | elapsed:  2.0min
+[Parallel(n_jobs=-1)]: Done  74 tasks      | elapsed:  2.4min
+[Parallel(n_jobs=-1)]: Done  88 out of 100 | elapsed:  2.8min remaining:   23.1s
+[Parallel(n_jobs=-1)]: Done 100 out of 100 | elapsed:  3.2min finished
+
+0.7678114478114478
+```
+Alright, so it looks like we might have a little bit of a better score but we need to do same steps as we did before just to be on the safe side.
+
+```python
+best = search.best_score_
+estimator = search.best_estimator_
+```
+```python
+best
+
+0.7618406285072952
+```
+Cool! It appears as if we have a little of improvement here.
+
+We will now submit it pretty much the same as before.
+
+```python
+estimator
+
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+              max_depth=3, min_child_weight=1, missing=None, n_estimators=291,
+              n_jobs=-1, nthread=None, objective='multi:softprob',
+              random_state=42, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
+              seed=None, silent=True, subsample=1)
+```
+```python
+
+X_test = encoder.transform(X_test)
+y_pred = estimator.predict(X_test)
+y_pred
+
+array(['functional', 'functional', 'functional', ..., 'functional',
+       'functional', 'non functional'], dtype=object)
+```
+```python
+
+submission2 = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/sample_submission.csv')
+submission2 = submission2.copy()
+submission2['status_group'] = y_pred
+submission2.to_csv('baseline2.csv', index=False)
+```
+```python
+!kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f baseline2.csv -m "Xgb baseline 2"
+```
+
 ### A Fun Little Confusion Matrix on the Prediction Model for Clarification.
+
+Now let's check what our model looks like when put into a confusion matrix. I know the name is kind of misleading but it does actually make sense if know how to interpret a few basic statictical terms. If not, you can always Google it and learn something new.
+
+```python
+y_pred = search.predict(X_val_encoded)
+print(classification_report(y_val, y_pred))
+
+
+columns = [f'Predicted {label}' for label in np.unique(y_val)]
+index = [f'Actual {label}' for label in np.unique(y_val)]
+pd.DataFrame(confusion_matrix(y_val, y_pred), columns=columns, index=index)
+
+                         precision    recall  f1-score   support
+
+             functional       0.74      0.92      0.82      8065
+functional needs repair       0.64      0.14      0.24      1079
+         non functional       0.83      0.67      0.74      5706
+
+               accuracy                           0.77     14850
+              macro avg       0.74      0.58      0.60     14850
+           weighted avg       0.77      0.77      0.75     14850
+```
+|                               | Predicted functional | Predicted functional needs repair | Predicted non functional |
+| ------------------------------ | -------------------- | --------------------------------- | ------------------------ |
+| Actual functional              |                7,401 |                                51 |                      613 |
+| Actual functional needs repair |                  744 |                               156 |                      179 |
+| Actual non functional          |                1,823 |                                38 |                    3,845 |
+
+
+           
 
 ## Third Cleaned Data Model Prediction.
 
