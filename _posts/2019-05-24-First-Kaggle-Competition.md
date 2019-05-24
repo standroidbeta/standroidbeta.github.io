@@ -750,4 +750,18 @@ permuter.fit(X_val, y_val)
 | 0 ± 0.0000      | quantity_group        |
 | 0 ± 0.0000      | years_service         |
 
+### Last, we have some Partial Dependence Plots
+
+Here is a single feature for water quantity PDP plot. The three classes represented in the plot are 'Functional', 'Functional Needds Repair', and 'Non-Functional' respectfully.
+
+```python
+from pdpbox.pdp import pdp_isolate, pdp_plot
+
+feature= 'quantity'
+isolated = pdp_isolate(model=search, dataset=X_test, model_features=X_test.columns, feature=feature)
+
+pdp_plot(isolated, feature_name=feature);
+```
+![PDP_plot](/img/PDP-plot.png)
+
 ## Conclusion
