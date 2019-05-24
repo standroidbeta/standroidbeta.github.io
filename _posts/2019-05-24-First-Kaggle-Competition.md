@@ -96,11 +96,11 @@ train_features.head()
 
 |   |    id  | status_group   |
 | - | ------ | ---------------|
-| 0 | 69,572 | functional     |
-| 1 |  8,776 | functional     |
-| 2 | 34,310 | functional     |
-| 3 | 67,743 | non functional |
-| 4 | 19,728 | functional     |
+| 0 | 69572 | functional     |
+| 1 |  8776 | functional     |
+| 2 | 34310 | functional     |
+| 3 | 67743 | non functional |
+| 4 | 19728 | functional     |
 
 
       
