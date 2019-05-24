@@ -155,8 +155,11 @@ y_train = train_labels['status_group']
 
 ```
 -
+
 Getting initial label counts
+
 -
+
 ```python
 
 y_train.value_counts(normalize=True)
@@ -444,7 +447,7 @@ Okay so here is a little bit of a forshadowing spoiler alert. I would not do thi
 ### Overdone Cleaning Funcion.
 This is a little bit of a clunky cleaning function that I made a few mods to from a code example that was shared in my class. But it works. made it for both the training and test datasets to ensure that the shapes of both datasets are maintained.
 
-#### Cleaning Train....
+#### Cleaning Training Data
 ```python
 
 def CleanTrain(X_train):
