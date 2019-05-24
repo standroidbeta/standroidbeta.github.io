@@ -138,15 +138,133 @@ functional                 0.543081
 non functional             0.384242
 functional needs repair    0.072677
 Name: status_group, dtype: float64
-```
-
-
-      
+```      
 ## First Baseline Model Prediction
 
+Now it is time to really get things moving with our first baseline model
 
+Let's start by assigning our features and target variables.
+```python
 
-### XGBoost Classification with RandomizedSearchCV.
+features = X_train.columns.tolist()
+target = y_train
+
+X = features
+y = target
+```
+
+### XGBoost Classification with RandomizedSearchCV
+
+Now that everything is set, we will build and run the first baseline model and see what happens.
+
+```python
+
+encoder = ce.OrdinalEncoder()
+X_train = encoder.fit_transform(X_train)
+
+param_distributions = {
+    'n_estimators': randint(50, 300), 
+    'max_depth': randint(2, 4)
+}
+
+# n_iter & cv parameters are low here so the example runs faster
+search = RandomizedSearchCV(
+    estimator=XGBClassifier(n_jobs=-1, random_state=42), 
+    param_distributions=param_distributions, 
+    n_iter=50, 
+    scoring='accuracy', 
+    n_jobs=-1, 
+    cv=2, 
+    verbose=10, 
+    return_train_score=True, 
+    random_state=42
+)
+
+search.fit(X_train, y_train)
+
+Fitting 2 folds for each of 50 candidates, totalling 100 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   1 tasks      | elapsed:    8.8s
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:   23.5s
+[Parallel(n_jobs=-1)]: Done  17 tasks      | elapsed:   46.4s
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:  1.4min
+[Parallel(n_jobs=-1)]: Done  37 tasks      | elapsed:  1.6min
+[Parallel(n_jobs=-1)]: Done  48 tasks      | elapsed:  2.4min
+[Parallel(n_jobs=-1)]: Done  61 tasks      | elapsed:  2.7min
+[Parallel(n_jobs=-1)]: Done  74 tasks      | elapsed:  3.3min
+[Parallel(n_jobs=-1)]: Done  88 out of 100 | elapsed:  3.8min remaining:   31.2s
+[Parallel(n_jobs=-1)]: Done 100 out of 100 | elapsed:  4.3min finished
+
+RandomizedSearchCV(cv=2, error_score='raise-deprecating',
+                   estimator=XGBClassifier(base_score=0.5, booster='gbtree',
+                                           colsample_bylevel=1,
+                                           colsample_bytree=1, gamma=0,
+                                           learning_rate=0.1, max_delta_step=0,
+                                           max_depth=3, min_child_weight=1,
+                                           missing=None, n_estimators=100,
+                                           n_jobs=-1, nthread=None,
+                                           objective='binary:logistic',
+                                           random_state=42, reg_alpha=0,
+                                           reg_lambda=1, sca...
+                                           seed=None, silent=True,
+                                           subsample=1),
+                   iid='warn', n_iter=50, n_jobs=-1,
+                   param_distributions={'max_depth': <scipy.stats._distn_infrastructure.rv_frozen object at 0x7f94e8854f60>,
+                                        'n_estimators': <scipy.stats._distn_infrastructure.rv_frozen object at 0x7f94e884aef0>},
+                   pre_dispatch='2*n_jobs', random_state=42, refit=True,
+                   return_train_score=True, scoring='accuracy', verbose=10
+```
+It took less than five minutes. Not too shabby.
+
+The next couple of code blocks will consists of fitting the baseline model to ultimately get an initial accuracy score. I mean that is what we are all here for right?
+
+```python
+estimator = search.best_estimator_
+best = search.best_score_
+estimator
+
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bytree=1, gamma=0, learning_rate=0.1, max_delta_step=0,
+              max_depth=3, min_child_weight=1, missing=None, n_estimators=113,
+              n_jobs=-1, nthread=None, objective='multi:softprob',
+              random_state=42, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
+              seed=None, silent=True, subsample=1)
+```
+Assinging the y_pred for score submission here in a sec.
+
+```python
+X_test = encoder.transform(X_test)
+y_pred = estimator.predict(X_test)
+
+y_pred
+
+array(['functional', 'functional', 'functional', ..., 'functional',
+       'functional', 'non functional'], dtype=object)
+```
+And here is our first score ladies and gentlemen
+
+```python
+best
+
+0.7465488215488215
+```
+Not to shabby for a guy who is new to this data sciencing thing if I do say so myself seeing I needed to get at least 60%.
+
+But I think I can do better.
+
+First I need to submit this score though. Hope you don't mind.
+
+```python
+submission = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/sample_submission.csv')
+submission = submission.copy()
+submission['status_group'] = y_pred
+submission.to_csv('baseline.csv', index=False)
+```
+She's all saved. Now let's upload this puppy to Kaggle.
+````python
+!kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f baseline.csv -m "Xgb baseline"
+```
+
 
 ## Second Baseline Model Prediction
 
