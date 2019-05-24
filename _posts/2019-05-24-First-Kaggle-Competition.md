@@ -673,7 +673,7 @@ functional needs repair       0.64      0.23      0.34       809
               macro avg       0.75      0.62      0.65     11138
            weighted avg       0.79      0.79      0.78     11138
 ```
-| a                              | Predicted functional | Predicted functional needs repair | Predicted non functional |
+|                                | Predicted functional | Predicted functional needs repair | Predicted non functional |
 | ------------------------------ | -------------------- | --------------------------------- | ------------------------ |
 | Actual functional              |                5,526 |                                62 |                      461 |
 | Actual functional needs repair |                  483 |                               185 |                      141 |
@@ -776,4 +776,4 @@ This challenge taught me alot about how important it that the water pumps in Tan
 
 This dataset seemed to have a fair amount of NaN values. There also seemed to be additional values that looked like would result in a fair amount of outlier data and skewing of the data but it appears that XGBoost did a good job of not letting those hurdles to get in the way of finding a good accuracy score. 
 
-Thank you for taking the time to join me in my endeavor. My next project will be a Data Science Engineering one in which i am super excited about.
+Thank you for taking the time to join me in my endeavor. My next project will be a Data Science Engineering one in which I am super excited about.
