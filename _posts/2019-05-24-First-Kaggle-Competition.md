@@ -133,11 +133,13 @@ Getting initial label counts
 ```python
 
 y_train.value_counts(normalize=True)
-```
+
 functional                 0.543081
 non functional             0.384242
 functional needs repair    0.072677
 Name: status_group, dtype: float64
+```
+
 
       
 ## First Baseline Model Prediction
