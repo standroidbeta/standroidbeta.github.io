@@ -16,7 +16,7 @@ Continue reading if you dare to know more about my journey!
 ## Tanzanian Water Pump Kaggle Challenge Overview
 ![Tanzania Water Pump](/img/tanzania-water-pump.jpeg)
 
-### Predict which water pumps are faulty
+### Predict which water pumps are faulty.
 Using data from Taarifa and the Tanzanian Ministry of Water, can you predict which pumps are functional, which need some repairs, and which don't work at all? Predict one of these three classes based on a number of variables about what kind of pump is operating, when it was installed, and how it is managed. A smart understanding of which waterpoints will fail can improve maintenance operations and ensure that clean, potable water is available to communities across Tanzania.
 
 This predictive modeling challenge comes from DrivenData, an organization who helps non-profits by hosting data science competitions for social impact. The competition has open licensing: "The data is available for use outside of DrivenData." We are reusing the data on Kaggle's InClass platform so we can run a weeklong challenge just for your Lambda School Data Science cohort.
@@ -31,20 +31,26 @@ Go here to get the complete Kaggle challenge info.
 
 [Tanzanian Water Pump Kaggle Challenge](https://www.kaggle.com/c/ds3-predictive-modeling-challenge/overview)
 
-## Here are some data points
+## Data Pre-processing
 
-### Impact Analysis
+## First Baseline Model Prediction
 
-### Use Code
+### XGBoost Classification with RandomizedSearchCV.
 
-### Graph
+## Second Baseline Model Prediction
 
-## What I learned
+### XGBoost Classification on Test Train Split Dataset with RandomizedSearchCV.
 
-## Predictive Analysis
+### A Fun Little Confusion Matrix on the Prediction Model for Clarification.
 
-### Dataframe
+## Third Cleaned Data Model Prediction.
 
-### Graph
+### Overdone Cleaning Funcion.
+
+### XGBoost Classification on Test Train Split Dataset with GridSearchCV and adjusted Hyper-parameters.
+
+### Hey! Here is Another Model Confusion Matrix for Some More Clarification.
+
+## Here Are Some Fun but Simple Visualizations for Your Pleasure.
 
 ## Conclusion
