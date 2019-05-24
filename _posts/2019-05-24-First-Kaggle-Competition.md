@@ -7,7 +7,7 @@ tags: [Kaggle, Predictive Modeling, Tanzanian Water Pumps]
 ---
 
 ## Purpose
-This is my second data science project at Lambda School where I participated in a week-long private Kaggle Challenge to predict the functonality of water pumps in Tanzania. For the record, I did not place in the top half of my class but I was able to predict a respectible accuracy by using an XGBoost classification model using both randomized search cross-validation and grid search cross-validation techniques.
+This is my second data science project at Lambda School where I participated in a week-long private Kaggle Challenge to predict the functonality of water pumps in Tanzania. For the record, I did not place in the top half of my class but I was able to predict a respectible accuracy by using an XGBoost classification model with both randomized search cross-validation and grid search cross-validation techniques.
 
 This was a really fun challenge because I was able to practically apply concepts that I have learned at Lambda School with real-world data that can be used for social good.
 
@@ -37,7 +37,7 @@ I started with retrieving the data from Kaggle like this:
 ```python
 !kaggle competitions download -c ds3-predictive-modeling-challenge
 ```
-I then imported all of the Python Library tools that I thought that I might need to use for this project. It turned out that I only used a few of them. But hey, better to be prepared for anything than for nothing.
+I then imported all of the Python Library tools that I thoughtI might need to use for this project. It turned out that I only used a few of them. But hey, better to be prepared for anything than for nothing.
 
 ```python
 
@@ -284,7 +284,7 @@ best
 
 0.7465488215488215
 ```
-Not to shabby for a guy who is new to this data sciencing thing if I do say so myself seeing I needed to get at least 60%.
+Not to shabby for a guy who is new to this data sciencing thing if I do say so myself. Also, there is the fact that I needed to get at least 60%.
 
 But I think I can do better.
 
@@ -366,7 +366,7 @@ best
 ```
 -
 
-Cool! It appears as if we have a little of improvement here.
+Cool! It appears as if we have a little bit of improvement here.
 
 We will now submit it pretty much the same as before.
 
@@ -442,7 +442,7 @@ functional needs repair       0.64      0.14      0.24      1079
 
 ## Third Cleaned Data Model Prediction
 
-Okay so here is a little bit of a forshadowing spoiler alert. I would not do this level of data cleaning if I were to do this all over again. This last model result is what settled on because I had to make a ton of tweeks with both feature engeering and the hyper-parameters. I actually got better scores of close to 80% accuracy with just tweaking the second model's hyper-parameters but I didn't keep those results because I thought the grass was going to be greener on the other side of this third model. Trust me, I am most definitely kicking myself for it.
+Okay so here is a little bit of a forshadowing spoiler alert. I would not do this level of data cleaning if I were to do this all over again. This last model result is what I settled on because I had to make a ton of tweeks with both feature engeering and the hyper-parameters. I actually got closer to 80% accuracy scores with just tweaking the second model's hyper-parameters but I didn't keep those results because I thought the grass was going to be greener on the other side of this third model. Trust me, I am most definitely kicking myself for it.
 
 ### Overdone Cleaning Funcion.
 This is a little bit of a clunky cleaning function that I made a few mods to from a code example that was shared in my class. But it works. made it for both the training and test datasets to ensure that the shapes of both datasets are maintained.
