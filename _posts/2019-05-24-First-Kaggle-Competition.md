@@ -93,11 +93,14 @@ train_features.head()
 | 3 | 67743 |          0 |    2013-01-28 | Unicef       |        263 | UNICEF       |   38.486… | -11.155… | Zahanati Ya Nanyumbu |       False | Ruvuma / Southern Coast | Mahakamani | Mtwara  |          90 |            63 | Nanyumbu  | Nanyumbu   |         58 | True           | GeoData Consultants Ltd | VWC               | NaN                         |   True |             1,986 | submersible     | submersible           | submersible           | vwc        | user-group       | never pay      | never pay    | soft          | good          | dry          | dry            | machine dbh          | borehole             | groundwater  | communal standpipe multiple | communal standpipe    |
 | 4 | 19728 |          0 |    2011-07-13 | Action In A  |          0 | Artisan      |   31.131… |  -1.825… | Shuleni              |       False | Lake Victoria           | Kyanyamisa | Kagera  |          18 |             1 | Karagwe   | Nyakasimbi |          0 | True           | GeoData Consultants Ltd | NaN               | NaN                         |   True |                 0 | gravity         | gravity               | gravity               | other      | other            | never pay      | never pay    | soft          | good          | seasonal     | seasonal       | rainwater harvesting | rainwater harvesting | surface      | communal standpipe          | communal standpipe    |
 
+
+
 ```python
 train_labels = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/train_labels.csv.zip')
 
 train_labels.head()
 ```
+
 
 |   |    id  | status_group   |
 | - | ------ | ---------------|
@@ -107,19 +110,24 @@ train_labels.head()
 | 3 | 67743 | non functional |
 | 4 | 19728 | functional     |
 
+
+
 ```python
 
 test_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/test_features.csv.zip')
 pd.options.display.max_columns = 40
 test_features.head()
 ```
+
+
 |   |     id | amount_tsh | date_recorded | funder                 | gps_height | installer  | longitude | latitude | wpt_name                | num_private | basin                   | subvillage | region  | region_code | district_code | lga           | ward         | population | public_meeting | recorded_by             | scheme_management | scheme_name    | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management  | management_group | payment     | payment_type | water_quality | quality_group | quantity     | quantity_group | source               | source_type          | source_class | waterpoint_type    | waterpoint_type_group |
 | - | ------ | ---------- | ------------- | ---------------------- | ---------- | ---------- | --------- | -------- | ----------------------- | ----------- | ----------------------- | ---------- | ------- | ----------- | ------------- | ------------- | ------------ | ---------- | -------------- | ----------------------- | ----------------- | -------------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ----------- | ---------------- | ----------- | ------------ | ------------- | ------------- | ------------ | -------------- | -------------------- | -------------------- | ------------ | ------------------ | --------------------- |
-| 0 | 50785 |          0 |    2013-02-04 | Dmdd                   |      1,996 | DMDD       |   35.291… |  -4.060… | Dinamu Secondary School |       False | Internal                | Magoma     | Manyara |          21 |             3 | Mbulu         | Bashay       |        321 | True           | GeoData Consultants Ltd | Parastatal        | NaN            | True   |             2,012 | other           | other                 | other                 | parastatal  | parastatal       | never pay   | never pay    | soft          | good          | seasonal     | seasonal       | rainwater harvesting | rainwater harvesting | surface      | other              | other                 |
+| 0 | 50785 |          0 |    2013-02-04 | Dmdd                   |      1,996 | DMDD       |   35.291… |  -4.060… | Dinamu Secondary School |       False | Internal                | Magoma     | Manyara |          21 |             3 | Mbulu         | Bashay       |        321 | True           | GeoData Consultants Ltd | Parastatal        | NaN            | True   |             2012 | other           | other                 | other                 | parastatal  | parastatal       | never pay   | never pay    | soft          | good          | seasonal     | seasonal       | rainwater harvesting | rainwater harvesting | surface      | other              | other                 |
 | 1 | 51630 |          0 |    2013-02-04 | Government Of Tanzania |      1,569 | DWE        |   36.657… |  -3.309… | Kimnyak                 |       False | Pangani                 | Kimnyak    | Arusha  |           2 |             2 | Arusha Rural  | Kimnyaki     |        300 | True           | GeoData Consultants Ltd | VWC               | TPRI pipe line | True   |             2,000 | gravity         | gravity               | gravity               | vwc         | user-group       | never pay   | never pay    | soft          | good          | insufficient | insufficient   | spring               | spring               | groundwater  | communal standpipe | communal standpipe    |
 | 2 | 17168 |          0 |    2013-02-01 | NaN                    |      1,567 | NaN        |   34.768… |  -5.004… | Puma Secondary          |       False | Internal                | Msatu      | Singida |          13 |             2 | Singida Rural | Puma         |        500 | True           | GeoData Consultants Ltd | VWC               | P              | NaN    |             2,010 | other           | other                 | other                 | vwc         | user-group       | never pay   | never pay    | soft          | good          | insufficient | insufficient   | rainwater harvesting | rainwater harvesting | surface      | other              | other                 |
 | 3 | 45559 |          0 |    2013-01-22 | Finn Water             |        267 | FINN WATER |   38.058… |  -9.419… | Kwa Mzee Pange          |       False | Ruvuma / Southern Coast | Kipindimbi | Lindi   |          80 |            43 | Liwale        | Mkutano      |        250 | NaN            | GeoData Consultants Ltd | VWC               | NaN            | True   |             1,987 | other           | other                 | other                 | vwc         | user-group       | unknown     | unknown      | soft          | good          | dry          | dry            | shallow well         | shallow well         | groundwater  | other              | other                 |
 | 4 | 49871 |        500 |    2013-03-27 | Bruder                 |      1,260 | BRUDER     |   35.006… | -10.950… | Kwa Mzee Turuka         |       False | Ruvuma / Southern Coast | Losonga    | Ruvuma  |          10 |             3 | Mbinga        | Mbinga Urban |         60 | NaN            | GeoData Consultants Ltd | Water Board       | BRUDER         | True   |             2,000 | gravity         | gravity               | gravity               | water board | user-group       | pay monthly | monthly      | soft          | good          | enough       | enough         | spring               | spring               | groundwater  | communal standpipe | communal standpipe    |
+
 
 Assigning training and test variables
 
