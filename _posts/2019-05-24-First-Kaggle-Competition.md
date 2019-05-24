@@ -682,4 +682,17 @@ functional needs repair       0.64      0.23      0.34       809
 
 ## Here Are Some Fun but Simple Visualizations for Your Pleasure.
 
+### Feature importances
+
+```python
+n = len(X_train.columns)
+figsize = (15,20)
+
+importances = pd.Series(search.best_estimator_.feature_importances_, X_train.columns)
+
+top_n = importances.sort_values()[-n:]
+plt.figure(figsize=figsize)
+top_n.plot.barh(color='firebrick');
+```
+![Feature-Importances](/img/feature-importances.png)
 ## Conclusion
