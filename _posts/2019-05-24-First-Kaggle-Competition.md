@@ -84,7 +84,7 @@ train_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predict
 pd.options.display.max_columns = 40
 train_features.head()
 ```
-
+-
 
 
 |  |     id | amount_tsh | date_recorded | funder       | gps_height | installer    | longitude | latitude | wpt_name             | num_private | basin                   | subvillage | region  | region_code | district_code | lga       | ward       | population | public_meeting | recorded_by             | scheme_management | scheme_name                 | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment        | payment_type | water_quality | quality_group | quantity     | quantity_group | source               | source_type          | source_class | waterpoint_type             | waterpoint_type_group |
@@ -96,7 +96,7 @@ train_features.head()
 | 4 | 19728 |          0 |    2011-07-13 | Action In A  |          0 | Artisan      |   31.131… |  -1.825… | Shuleni              |       False | Lake Victoria           | Kyanyamisa | Kagera  |          18 |             1 | Karagwe   | Nyakasimbi |          0 | True           | GeoData Consultants Ltd | NaN               | NaN                         |   True |                 0 | gravity         | gravity               | gravity               | other      | other            | never pay      | never pay    | soft          | good          | seasonal     | seasonal       | rainwater harvesting | rainwater harvesting | surface      | communal standpipe          | communal standpipe    |
 
 
-
+-
 
 
 
@@ -107,7 +107,7 @@ train_labels.head()
 ```
 
 
-
+-
 
 
 |   |    id  | status_group   |
@@ -120,7 +120,7 @@ train_labels.head()
 
 
 
-
+-
 
 
 ```python
@@ -131,7 +131,7 @@ test_features.head()
 ```
 
 
-
+-
 
 
 
@@ -143,16 +143,20 @@ test_features.head()
 | 3 | 45559 |          0 |    2013-01-22 | Finn Water             |        267 | FINN WATER |   38.058… |  -9.419… | Kwa Mzee Pange          |       False | Ruvuma / Southern Coast | Kipindimbi | Lindi   |          80 |            43 | Liwale        | Mkutano      |        250 | NaN            | GeoData Consultants Ltd | VWC               | NaN            | True   |             1,987 | other           | other                 | other                 | vwc         | user-group       | unknown     | unknown      | soft          | good          | dry          | dry            | shallow well         | shallow well         | groundwater  | other              | other                 |
 | 4 | 49871 |        500 |    2013-03-27 | Bruder                 |      1,260 | BRUDER     |   35.006… | -10.950… | Kwa Mzee Turuka         |       False | Ruvuma / Southern Coast | Losonga    | Ruvuma  |          10 |             3 | Mbinga        | Mbinga Urban |         60 | NaN            | GeoData Consultants Ltd | Water Board       | BRUDER         | True   |             2,000 | gravity         | gravity               | gravity               | water board | user-group       | pay monthly | monthly      | soft          | good          | enough       | enough         | spring               | spring               | groundwater  | communal standpipe | communal standpipe    |
 
+-
 
 Assigning training and test variables
 
+-
 ```python
 X_train = train_features
 X_test = test_features
 y_train = train_labels['status_group']
 
 ```
+-
 Getting initial label counts
+-
 ```python
 
 y_train.value_counts(normalize=True)
@@ -167,6 +171,9 @@ Name: status_group, dtype: float64
 Now it is time to really get things moving with our first baseline model
 
 Let's start by assigning our features and target variables.
+
+-
+
 ```python
 
 features = X_train.columns.tolist()
@@ -175,10 +182,13 @@ target = y_train
 X = features
 y = target
 ```
+-
 
 ### XGBoost Classification with RandomizedSearchCV
 
 Now that everything is set, we will build and run the first baseline model and see what happens.
+
+-
 
 ```python
 
@@ -336,17 +346,23 @@ Fitting 2 folds for each of 50 candidates, totalling 100 fits
 
 0.7678114478114478
 ```
+-
+
 Alright, so it looks like we might have a little bit of a better score but we need to do same steps as we did before just to be on the safe side.
 
 ```python
 best = search.best_score_
 estimator = search.best_estimator_
 ```
+-
+
 ```python
 best
 
 0.7618406285072952
 ```
+-
+
 Cool! It appears as if we have a little of improvement here.
 
 We will now submit it pretty much the same as before.
@@ -361,6 +377,8 @@ XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
               random_state=42, reg_alpha=0, reg_lambda=1, scale_pos_weight=1,
               seed=None, silent=True, subsample=1)
 ```
+-
+
 ```python
 
 X_test = encoder.transform(X_test)
@@ -370,6 +388,8 @@ y_pred
 array(['functional', 'functional', 'functional', ..., 'functional',
        'functional', 'non functional'], dtype=object)
 ```
+-
+
 ```python
 
 submission2 = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/sample_submission.csv')
@@ -377,6 +397,8 @@ submission2 = submission2.copy()
 submission2['status_group'] = y_pred
 submission2.to_csv('baseline2.csv', index=False)
 ```
+-
+
 ```python
 !kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f baseline2.csv -m "Xgb baseline 2"
 ```
@@ -404,6 +426,8 @@ functional needs repair       0.64      0.14      0.24      1079
               macro avg       0.74      0.58      0.60     14850
            weighted avg       0.77      0.77      0.75     14850
 ```
+-
+
 |                               | Predicted functional | Predicted functional needs repair | Predicted non functional |
 | ------------------------------ | -------------------- | --------------------------------- | ------------------------ |
 | Actual functional              |                7,401 |                                51 |                      613 |
@@ -466,6 +490,8 @@ clean_train = CleanTrain(X_train)
 clean_train = clean_train.drop(columns=['date_recorded'])
 clean_train.head()
 ```
+-
+
 |        |     id | amount_tsh | funder | gps_height | installer | longitude | latitude | wpt_name | num_private | basin | subvillage | region | region_code | district_code | lga |  ward | population | public_meeting | recorded_by | scheme_management | scheme_name | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment | payment_type | water_quality | quality_group | quantity | quantity_group | source | source_type | source_class | waterpoint_type | waterpoint_type_group | years_service |
 | ------ | ------ | ---------- | ------ | ---------- | --------- | --------- | -------- | -------- | ----------- | ----- | ---------- | ------ | ----------- | ------------- | --- | ----- | ---------- | -------------- | ----------- | ----------------- | ----------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ---------- | ---------------- | ------- | ------------ | ------------- | ------------- | -------- | -------------- | ------ | ----------- | ------------ | --------------- | --------------------- | ------------- |
 | 35240 | 28,252 |        200 |     26 | 1,757.000… |        76 |   34.589… |  -9.787… |        1 |       False |     1 |      2,830 |      1 |          11 |             5 |   1 |   705 |         75 |              1 |        True |                 1 |         344 |      1 |             2,001 |               1 |                     1 |                     1 |          1 |                1 |       7 |            7 |          True |          True |     True |           True |      1 |           1 |            1 |               1 |                     1 |           -31 |
@@ -475,6 +501,9 @@ clean_train.head()
 | 21149 | 63,291 |         50 |     24 |   -27.000… |       308 |   38.901… |  -6.452… |    1,137 |       False |     7 |      1,947 |      9 |           6 |             1 |  25 |   501 |         20 |              1 |        True |                 9 |          53 |      2 |             2,009 |               7 |                     2 |                     2 |          4 |                3 |       3 |            3 |          True |          True |     True |           True |      7 |           7 |            2 |               1 |                     1 |           -39 |
 
 #### Cleaning Test
+
+-
+
 ```python
 def CleanTest(X_test):
     df_test = X_test
@@ -515,6 +544,8 @@ clean_test = CleanTest(X_test)
 clean_test= clean_test.drop(columns=['date_recorded'])
 clean_test.head()
 ```
+-
+
 |  |     id | amount_tsh | funder | gps_height | installer | longitude | latitude | wpt_name | num_private | basin | subvillage | region | region_code | district_code | lga |  ward | population | public_meeting | recorded_by | scheme_management | scheme_name | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment | payment_type | water_quality | quality_group | quantity | quantity_group | source | source_type | source_class | waterpoint_type | waterpoint_type_group | years_service |
 | - | ------ | ---------- | ------ | ---------- | --------- | --------- | -------- | -------- | ----------- | ----- | ---------- | ------ | ----------- | ------------- | --- | ----- | ---------- | -------------- | ----------- | ----------------- | ----------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ---------- | ---------------- | ------- | ------------ | ------------- | ------------- | -------- | -------------- | ------ | ----------- | ------------ | --------------- | --------------------- | ------------- |
 | 0 | 50785 |         20 |    164 |      1,996 |       342 |   35.291… |  -4.060… |       -1 |       False |     5 |     10,944 |      3 |          21 |             3 |  38 |   574 |        321 |              1 |        True |                10 |           2 |      2 |             2,012 |               6 |                     6 |                     4 |          9 |                4 |       2 |            2 |          True |          True |        4 |              4 |      2 |           2 |            2 |               4 |                     3 |           -42 |
@@ -524,6 +555,9 @@ clean_test.head()
 | 4 | 49871 |        500 |  1,038 |      1,260 |     1,133 |   35.006… | -10.950… |    2,985 |       False |     4 |      2,891 |     10 |          10 |             3 |  98 |   654 |         60 |              2 |        True |                 6 |         319 |      2 |             2,000 |               1 |                     1 |                     1 |          5 |                1 |       7 |            7 |          True |          True |        1 |              1 |      1 |           1 |            1 |               1 |                     1 |           -30 |
 
 Okay now time to assign variable and have another helping of train test split and  verify our dataframe shapes.
+
+-
+
 ```python
 X_train = clean_train
 X_test = clean_test
@@ -540,6 +574,9 @@ X.shape, y.shape
 ((44550, 40), (44550,))
 ```
 Now doing the split
+
+-
+
 ```python
 X_train, X_val, y_train, y_val = train_test_split(
     X_train, y_train, random_state=42, stratify=y_train)
@@ -676,6 +713,8 @@ X_train_encoded = encoder.fit_transform(X_train)
 X_test_encoded = encoder.fit_transform(X_test)
 X_val_encoded = encoder.fit_transform(X_val)
 ```
+-
+
 ```python
 y_pred = search.predict(X_val_encoded)
 print(classification_report(y_val, y_pred))
@@ -696,6 +735,8 @@ functional needs repair       0.64      0.23      0.34       809
               macro avg       0.75      0.62      0.65     11138
            weighted avg       0.79      0.79      0.78     11138
 ```
+-
+
 |                                | Predicted functional | Predicted functional needs repair | Predicted non functional |
 | ------------------------------ | -------------------- | --------------------------------- | ------------------------ |
 | Actual functional              |                5,526 |                                62 |                      461 |
@@ -718,6 +759,8 @@ top_n = importances.sort_values()[-n:]
 plt.figure(figsize=figsize)
 top_n.plot.barh(color='firebrick');
 ```
+-
+
 ![Feature-Importances](/img/feature-importances.png)
 
 ### Model Permutations with ELI5
@@ -730,6 +773,8 @@ permuter = PermutationImportance(search, scoring='accuracy', cv='prefit',
 
 permuter.fit(X_val, y_val)
 ```
+-
+
 | Weight          | Feature               |
 | --------------- | --------------------- |
 | 0.1065 ± 0.0009 | quantity              |
@@ -785,6 +830,8 @@ isolated = pdp_isolate(model=search, dataset=X_test, model_features=X_test.colum
 
 pdp_plot(isolated, feature_name=feature);
 ```
+-
+
 ![PDP-plot](/img/PDP_plot.png)
 
 ### Partial Depedence Plot with Two Features
