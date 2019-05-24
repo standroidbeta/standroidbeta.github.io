@@ -84,10 +84,10 @@ train_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predict
 pd.options.display.max_columns = 40
 train_features.head()
 ```
+test1, test2
+1, 2
 ---
-test1, test2,
-1, 2,
----
+
 
       
 ## First Baseline Model Prediction
