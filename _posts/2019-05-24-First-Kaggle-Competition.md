@@ -2,7 +2,7 @@
 layout: post
 title: Predictive Modeling Kaggle Challenge
 subtitle: Tanzanian Water Pump Functionality Predictions
-bigimg: /img/tanzania.jpg
+bigimg: /img/tanzania-flag.jpg
 tags: [Kaggle, Predictive Modeling, Tanzanian Water Pumps]
 ---
 
