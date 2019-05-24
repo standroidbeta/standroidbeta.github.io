@@ -83,16 +83,72 @@ Here is my quick examination of the data imported.
 train_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/train_features.csv.zip')
 pd.options.display.max_columns = 40
 train_features.head()
-
-	id	amount_tsh	date_recorded	funder	gps_height	installer	longitude	latitude	wpt_name	num_private	basin	subvillage	region	region_code	district_code	lga	ward	population	public_meeting	recorded_by	scheme_management	scheme_name	permit	construction_year	extraction_type	extraction_type_group	extraction_type_class	management	management_group	payment	payment_type	water_quality	quality_group	quantity	quantity_group	source	source_type	source_class	waterpoint_type	waterpoint_type_group
-0	69572	6000.0	2011-03-14	Roman	1390	Roman	34.938093	-9.856322	none	0	Lake Nyasa	Mnyusi B	Iringa	11	5	Ludewa	Mundindi	109	True	GeoData Consultants Ltd	VWC	Roman	False	1999	gravity	gravity	gravity	vwc	user-group	pay annually	annually	soft	good	enough	enough	spring	spring	groundwater	communal standpipe	communal standpipe
-1	8776	0.0	2013-03-06	Grumeti	1399	GRUMETI	34.698766	-2.147466	Zahanati	0	Lake Victoria	Nyamara	Mara	20	2	Serengeti	Natta	280	NaN	GeoData Consultants Ltd	Other	NaN	True	2010	gravity	gravity	gravity	wug	user-group	never pay	never pay	soft	good	insufficient	insufficient	rainwater harvesting	rainwater harvesting	surface	communal standpipe	communal standpipe
-2	34310	25.0	2013-02-25	Lottery Club	686	World vision	37.460664	-3.821329	Kwa Mahundi	0	Pangani	Majengo	Manyara	21	4	Simanjiro	Ngorika	250	True	GeoData Consultants Ltd	VWC	Nyumba ya mungu pipe scheme	True	2009	gravity	gravity	gravity	vwc	user-group	pay per bucket	per bucket	soft	good	enough	enough	dam	dam	surface	communal standpipe multiple	communal standpipe
-3	67743	0.0	2013-01-28	Unicef	263	UNICEF	38.486161	-11.155298	Zahanati Ya Nanyumbu	0	Ruvuma / Southern Coast	Mahakamani	Mtwara	90	63	Nanyumbu	Nanyumbu	58	True	GeoData Consultants Ltd	VWC	NaN	True	1986	submersible	submersible	submersible	vwc	user-group	never pay	never pay	soft	good	dry	dry	machine dbh	borehole	groundwater	communal standpipe multiple	communal standpipe
-4	19728	0.0	2011-07-13	Action In A	0	Artisan	31.130847	-1.825359	Shuleni	0	Lake Victoria	Kyanyamisa	Kagera	18	1	Karagwe	Nyakasimbi	0	True	GeoData Consultants Ltd	NaN	NaN	True	0	gravity	gravity	gravity	other	other	never pay	never pay	soft	good	seasonal	seasonal	rainwater harvesting	rainwater harvesting	surface	communal standpipe	communal standpipe
-
 ```
-
+"text/plain": [
+       "      id  amount_tsh date_recorded        funder  gps_height     installer  \\\n",
+       "0  69572      6000.0    2011-03-14         Roman        1390         Roman   \n",
+       "1   8776         0.0    2013-03-06       Grumeti        1399       GRUMETI   \n",
+       "2  34310        25.0    2013-02-25  Lottery Club         686  World vision   \n",
+       "3  67743         0.0    2013-01-28        Unicef         263        UNICEF   \n",
+       "4  19728         0.0    2011-07-13   Action In A           0       Artisan   \n",
+       "\n",
+       "   longitude   latitude              wpt_name  num_private  \\\n",
+       "0  34.938093  -9.856322                  none            0   \n",
+       "1  34.698766  -2.147466              Zahanati            0   \n",
+       "2  37.460664  -3.821329           Kwa Mahundi            0   \n",
+       "3  38.486161 -11.155298  Zahanati Ya Nanyumbu            0   \n",
+       "4  31.130847  -1.825359               Shuleni            0   \n",
+       "\n",
+       "                     basin  subvillage   region  region_code  district_code  \\\n",
+       "0               Lake Nyasa    Mnyusi B   Iringa           11              5   \n",
+       "1            Lake Victoria     Nyamara     Mara           20              2   \n",
+       "2                  Pangani     Majengo  Manyara           21              4   \n",
+       "3  Ruvuma / Southern Coast  Mahakamani   Mtwara           90             63   \n",
+       "4            Lake Victoria  Kyanyamisa   Kagera           18              1   \n",
+       "\n",
+       "         lga        ward  population public_meeting              recorded_by  \\\n",
+       "0     Ludewa    Mundindi         109           True  GeoData Consultants Ltd   \n",
+       "1  Serengeti       Natta         280            NaN  GeoData Consultants Ltd   \n",
+       "2  Simanjiro     Ngorika         250           True  GeoData Consultants Ltd   \n",
+       "3   Nanyumbu    Nanyumbu          58           True  GeoData Consultants Ltd   \n",
+       "4    Karagwe  Nyakasimbi           0           True  GeoData Consultants Ltd   \n",
+       "\n",
+       "  scheme_management                  scheme_name permit  construction_year  \\\n",
+       "0               VWC                        Roman  False               1999   \n",
+       "1             Other                          NaN   True               2010   \n",
+       "2               VWC  Nyumba ya mungu pipe scheme   True               2009   \n",
+       "3               VWC                          NaN   True               1986   \n",
+       "4               NaN                          NaN   True                  0   \n",
+       "\n",
+       "  extraction_type extraction_type_group extraction_type_class management  \\\n",
+       "0         gravity               gravity               gravity        vwc   \n",
+       "1         gravity               gravity               gravity        wug   \n",
+       "2         gravity               gravity               gravity        vwc   \n",
+       "3     submersible           submersible           submersible        vwc   \n",
+       "4         gravity               gravity               gravity      other   \n",
+       "\n",
+       "  management_group         payment payment_type water_quality quality_group  \\\n",
+       "0       user-group    pay annually     annually          soft          good   \n",
+       "1       user-group       never pay    never pay          soft          good   \n",
+       "2       user-group  pay per bucket   per bucket          soft          good   \n",
+       "3       user-group       never pay    never pay          soft          good   \n",
+       "4            other       never pay    never pay          soft          good   \n",
+       "\n",
+       "       quantity quantity_group                source           source_type  \\\n",
+       "0        enough         enough                spring                spring   \n",
+       "1  insufficient   insufficient  rainwater harvesting  rainwater harvesting   \n",
+       "2        enough         enough                   dam                   dam   \n",
+       "3           dry            dry           machine dbh              borehole   \n",
+       "4      seasonal       seasonal  rainwater harvesting  rainwater harvesting   \n",
+       "\n",
+       "  source_class              waterpoint_type waterpoint_type_group  \n",
+       "0  groundwater           communal standpipe    communal standpipe  \n",
+       "1      surface           communal standpipe    communal standpipe  \n",
+       "2      surface  communal standpipe multiple    communal standpipe  \n",
+       "3  groundwater  communal standpipe multiple    communal standpipe  \n",
+       "4      surface           communal standpipe    communal standpipe  "
+      ]
+      
 ## First Baseline Model Prediction
 
 
