@@ -94,6 +94,13 @@ train_features.head()
 |  4 |     19,728 |             0 | 2011-07-13 | Action In A  |         0 | Artisan      |  31.131… |  -1.825… | Shuleni              | False | Lake Victoria           | Kyanyamisa | Kagera      |            18 |   1 | Karagwe   | Nyakasimbi |              0 | True        | GeoData Consultants Ltd | NaN         | NaN                         |              True |               0 | gravity               | gravity               | gravity     | other            | other      | never pay      | never pay     | soft          | good     | seasonal       | seasonal     | rainwater harvesting | rainwater harvesting | surface         | communal standpipe          |
 
 
+|   |    id  | status_group   |
+| - | ------ | ---------------|
+| 0 | 69,572 | functional     |
+| 1 |  8,776 | functional     |
+| 2 | 34,310 | functional     |
+| 3 | 67,743 | non functional |
+| 4 | 19,728 | functional     |
 
 
       
