@@ -84,7 +84,7 @@ train_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predict
 pd.options.display.max_columns = 40
 train_features.head()
 ```
-[head1](/csv/Kaggle_proj_head1.csv)
+/csv/Kaggle_proj_head1.csv
 
 
       
