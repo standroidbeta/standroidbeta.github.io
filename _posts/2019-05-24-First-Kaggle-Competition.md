@@ -14,7 +14,7 @@ This was a really fun challenge because I got practically apply concepts that I 
 Continue reading if you dare to know more about my journey!
 
 ## Tanzanian Water Pump Kaggle Challenge Overview
-
+![Tanzania Water Pump]('img/tanzania-water-pump.jpeg')
 
 ## Here are some data points
 
