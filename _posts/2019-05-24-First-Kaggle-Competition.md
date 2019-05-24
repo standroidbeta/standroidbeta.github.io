@@ -684,6 +684,7 @@ functional needs repair       0.64      0.23      0.34       809
 
 ### Feature importances
 
+Feature importances will show the feature in the data set that has the most influece on the accuracy score for the model.
 ```python
 n = len(X_train.columns)
 figsize = (15,20)
@@ -695,4 +696,58 @@ plt.figure(figsize=figsize)
 top_n.plot.barh(color='firebrick');
 ```
 ![Feature-Importances](/img/feature-importances.png)
+
+### Model Permutations with ELI5
+
+This niffty little python library will take feature importances and then determine how each feature is weighted.
+
+```python
+permuter = PermutationImportance(search, scoring='accuracy', cv='prefit',
+                     n_iter=2, random_state=42)
+
+permuter.fit(X_val, y_val)
+```
+| Weight          | Feature               |
+| --------------- | --------------------- |
+| 0.1065 ± 0.0009 | quantity              |
+| 0.0268 ± 0.0013 | waterpoint_type       |
+| 0.0212 ± 0.0048 | payment               |
+| 0.0208 ± 0.0005 | construction_year     |
+| 0.0169 ± 0.0017 | latitude              |
+| 0.0158 ± 0.0036 | extraction_type       |
+| 0.0149 ± 0.0002 | longitude             |
+| 0.0125 ± 0.0022 | population            |
+| 0.0110 ± 0.0034 | source                |
+| 0.0089 ± 0.0025 | installer             |
+| 0.0087 ± 0.0009 | lga                   |
+| 0.0075 ± 0.0004 | ward                  |
+| 0.0070 ± 0.0013 | extraction_type_class |
+| 0.0066 ± 0.0025 | region_code           |
+| 0.0065 ± 0.0033 | scheme_name           |
+| 0.0065 ± 0.0007 | funder                |
+| 0.0060 ± 0.0007 | gps_height            |
+| 0.0047 ± 0.0028 | amount_tsh            |
+| 0.0044 ± 0.0000 | basin                 |
+| 0.0041 ± 0.0000 | management            |
+| 0.0041 ± 0.0011 | district_code         |
+| 0.0036 ± 0.0007 | extraction_type_group |
+| 0.0031 ± 0.0000 | public_meeting        |
+| 0.0030 ± 0.0002 | region                |
+| 0.0030 ± 0.0007 | scheme_management     |
+| 0.0018 ± 0.0013 | permit                |
+| 0.0015 ± 0.0027 | id                    |
+| 0.0013 ± 0.0008 | subvillage            |
+| 0.0009 ± 0.0003 | wpt_name              |
+| 0.0009 ± 0.0013 | management_group      |
+| 0.0009 ± 0.0004 | source_type           |
+| 0.0007 ± 0.0002 | water_quality         |
+| 0.0007 ± 0.0013 | source_class          |
+| 0.0001 ± 0.0001 | num_private           |
+| 0.0001 ± 0.0004 | quality_group         |
+| 0 ± 0.0000      | recorded_by           |
+| 0 ± 0.0000      | waterpoint_type_group |
+| 0 ± 0.0000      | payment_type          |
+| 0 ± 0.0000      | quantity_group        |
+| 0 ± 0.0000      | years_service         |
+
 ## Conclusion
