@@ -31,7 +31,50 @@ Go here to get the complete Kaggle challenge info.
 
 [Tanzanian Water Pump Kaggle Challenge](https://www.kaggle.com/c/ds3-predictive-modeling-challenge/overview)
 
-## Data Pre-processing
+## Importing the Data and an Overloaded Toolbox
+
+I started with retrieving the data from Kaggle like this:
+```python
+!kaggle competitions download -c ds3-predictive-modeling-challenge
+```
+I then imported all of the Python Library tools that I thought that I might need to use for this project. It turned out that I only used a few of them. But hey, better to be prepared for anything than for nothing.
+
+```python
+
+# Loading potential tools needed not all are used
+%matplotlib inline
+import eli5
+from eli5.sklearn import PermutationImportance
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import train_test_split
+import category_encoders as ce
+from scipy.stats import randint
+from sklearn.model_selection import RandomizedSearchCV
+from xgboost import XGBClassifier
+from xgboost import XGBRegressor
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import cross_val_score
+from pdpbox.pdp import pdp_isolate, pdp_plot
+from pdpbox.pdp import pdp_interact, pdp_interact_plot
+import shap
+from sklearn.metrics import mean_absolute_error
+from sklearn.feature_selection import f_regression, SelectKBest
+from sklearn.linear_model import Ridge
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import RobustScaler
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import f1_score
+from sklearn.linear_model import LogisticRegression
+```
+
 
 ## First Baseline Model Prediction
 
