@@ -390,9 +390,115 @@ functional needs repair       0.64      0.14      0.24      1079
 
            
 
-## Third Cleaned Data Model Prediction.
+## Third Cleaned Data Model Prediction
+
+Okay so here is a little bit of a forshadowing spoiler alert. I would not do this level of data cleaning if I were to do this all over again. This last model result is what settled on because I had to make a ton of tweeks with both feature engeering and the hyper-parameters. I actually got better scores of close to 80% accuracy with just tweaking the second model's hyper-parameters but I didn't keep those results because I thought the grass was going to be greener on the other side of this third model. Trust me, I am most definitely kicking myself for it.
 
 ### Overdone Cleaning Funcion.
+This is a little bit of a clunky cleaning function that I made a few mods to from a code example that was shared in my class. But it works. made it for both the training and test datasets to ensure that the shapes of both datasets are maintained.
+
+#### Cleaning Train....
+```python
+
+def CleanTrain(X_train):
+    df_train = X_train
+    df_train['gps_height'].replace(0.0, np.nan, inplace=True)
+    df_train['population'].replace(0.0, np.nan, inplace=True)
+    df_train['amount_tsh'].replace(0.0, np.nan, inplace=True)
+    df_train['gps_height'].fillna(df_train.groupby(['region', 'district_code'])['gps_height'].transform('mean'), inplace=True)
+    df_train['gps_height'].fillna(df_train.groupby(['region'])['gps_height'].transform('mean'), inplace=True)
+    df_train['gps_height'].fillna(df_train['gps_height'].mean(), inplace=True)
+    df_train['population'].fillna(df_train.groupby(['region', 'district_code'])['population'].transform('median'), inplace=True)
+    df_train['population'].fillna(df_train.groupby(['region'])['population'].transform('median'), inplace=True)
+    df_train['population'].fillna(df_train['population'].median(), inplace=True)
+    df_train['amount_tsh'].fillna(df_train.groupby(['region', 'district_code'])['amount_tsh'].transform('median'), inplace=True)
+    df_train['amount_tsh'].fillna(df_train.groupby(['region'])['amount_tsh'].transform('median'), inplace=True)
+    df_train['amount_tsh'].fillna(df_train['amount_tsh'].median(), inplace=True)
+    features=['amount_tsh', 'gps_height', 'population']
+#     scaler = MinMaxScaler(feature_range=(0,20))
+#     df_train[features] = scaler.fit_transform(df_train[features])
+    df_train['longitude'].replace(0.0, np.nan, inplace=True)
+    df_train['latitude'].replace(0.0, np.nan, inplace=True)
+    df_train['construction_year'].replace(0.0, np.nan, inplace=True)
+    df_train['latitude'].fillna(df_train.groupby(['region', 'district_code'])['latitude'].transform('mean'), inplace=True)
+    df_train['longitude'].fillna(df_train.groupby(['region', 'district_code'])['longitude'].transform('mean'), inplace=True)
+    df_train['longitude'].fillna(df_train.groupby(['region'])['longitude'].transform('mean'), inplace=True)
+    df_train['construction_year'].fillna(df_train.groupby(['region', 'district_code'])['construction_year'].transform('median'), inplace=True)
+    df_train['construction_year'].fillna(df_train.groupby(['region'])['construction_year'].transform('median'), inplace=True)
+    df_train['construction_year'].fillna(df_train.groupby(['district_code'])['construction_year'].transform('median'), inplace=True)
+    df_train['construction_year'].fillna(df_train['construction_year'].median(), inplace=True)
+    df_train['date_recorded'] = pd.to_datetime(df_train['date_recorded'])
+    df_train['years_service'] = df_train.date_recorded.dt.year - df_train.construction_year
+    
+    df_train.drop(columns=['date_recorded'])
+   
+   
+    #further spacial/location information
+    #https://www.kaggle.com/c/sf-crime/discussion/18853
+    
+    return df_train
+    
+clean_train = CleanTrain(X_train)
+
+clean_train = clean_train.drop(columns=['date_recorded'])
+clean_train.head()
+```
+|        |     id | amount_tsh | funder | gps_height | installer | longitude | latitude | wpt_name | num_private | basin | subvillage | region | region_code | district_code | lga |  ward | population | public_meeting | recorded_by | scheme_management | scheme_name | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment | payment_type | water_quality | quality_group | quantity | quantity_group | source | source_type | source_class | waterpoint_type | waterpoint_type_group | years_service |
+| ------ | ------ | ---------- | ------ | ---------- | --------- | --------- | -------- | -------- | ----------- | ----- | ---------- | ------ | ----------- | ------------- | --- | ----- | ---------- | -------------- | ----------- | ----------------- | ----------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ---------- | ---------------- | ------- | ------------ | ------------- | ------------- | -------- | -------------- | ------ | ----------- | ------------ | --------------- | --------------------- | ------------- |
+| 35240 | 28,252 |        200 |     26 | 1,757.000… |        76 |   34.589… |  -9.787… |        1 |       False |     1 |      2,830 |      1 |          11 |             5 |   1 |   705 |         75 |              1 |        True |                 1 |         344 |      1 |             2,001 |               1 |                     1 |                     1 |          1 |                1 |       7 |            7 |          True |          True |     True |           True |      1 |           1 |            1 |               1 |                     1 |           -31 |
+| 16282 | 49,008 |        500 |     16 | 1,664.000… |         6 |   31.739… |  -8.772… |   11,740 |       False |     9 |      2,373 |     12 |          15 |             2 |  15 |   861 |        300 |              1 |        True |                 1 |           2 |      1 |             1,994 |               4 |                     4 |                     3 |          1 |                1 |       2 |            2 |          True |          True |     True |           True |      6 |           6 |            1 |               3 |                     2 |           -24 |
+| 57019 | 20,957 |        250 |     12 | 1,057.653… |        22 |   33.923… |  -9.499… |   36,125 |       False |     1 |     17,653 |     18 |          12 |             3 |  28 | 1,014 |        200 |              1 |        True |                 1 |         526 |      2 |             2,002 |               1 |                     1 |                     1 |          1 |                1 |       7 |            7 |          True |          True |     True |           True |      1 |           1 |            1 |               1 |                     1 |           -32 |
+| 30996 | 57,627 |        500 |    166 | 1,532.000… |       159 |   34.820… | -11.109… |        5 |       False |     1 |     13,611 |     10 |          10 |             3 |  98 |   447 |        260 |              2 |        True |                 5 |         134 |      2 |             2,005 |               1 |                     1 |                     1 |          2 |                1 |       4 |            4 |          True |          True |     True |           True |      1 |           1 |            1 |               1 |                     1 |           -35 |
+| 21149 | 63,291 |         50 |     24 |   -27.000… |       308 |   38.901… |  -6.452… |    1,137 |       False |     7 |      1,947 |      9 |           6 |             1 |  25 |   501 |         20 |              1 |        True |                 9 |          53 |      2 |             2,009 |               7 |                     2 |                     2 |          4 |                3 |       3 |            3 |          True |          True |     True |           True |      7 |           7 |            2 |               1 |                     1 |           -39 |
+
+#### Cleaning Test
+```python
+def CleanTest(X_test):
+    df_test = X_test
+    df_test['gps_height'].replace(0.0, np.nan, inplace=True)
+    df_test['population'].replace(0.0, np.nan, inplace=True)
+    df_test['amount_tsh'].replace(0.0, np.nan, inplace=True)
+    df_test['gps_height'].fillna(df_test.groupby(['region', 'district_code'])['gps_height'].transform('mean'), inplace=True)
+    df_test['gps_height'].fillna(df_test.groupby(['region'])['gps_height'].transform('mean'), inplace=True)
+    df_test['gps_height'].fillna(df_test['gps_height'].mean(), inplace=True)
+    df_test['population'].fillna(df_test.groupby(['region', 'district_code'])['population'].transform('median'), inplace=True)
+    df_test['population'].fillna(df_test.groupby(['region'])['population'].transform('median'), inplace=True)
+    df_test['population'].fillna(df_test['population'].median(), inplace=True)
+    df_test['amount_tsh'].fillna(df_test.groupby(['region', 'district_code'])['amount_tsh'].transform('median'), inplace=True)
+    df_test['amount_tsh'].fillna(df_test.groupby(['region'])['amount_tsh'].transform('median'), inplace=True)
+    df_test['amount_tsh'].fillna(df_test['amount_tsh'].median(), inplace=True)
+    features=['amount_tsh', 'gps_height', 'population']
+#     scaler = MinMaxScaler(feature_range=(0,20))
+#     df_test[features] = scaler.fit_transform(df_test[features])
+    df_test['longitude'].replace(0.0, np.nan, inplace=True)
+    df_test['latitude'].replace(0.0, np.nan, inplace=True)
+    df_test['construction_year'].replace(0.0, np.nan, inplace=True)
+    df_test['latitude'].fillna(df_test.groupby(['region', 'district_code'])['latitude'].transform('mean'), inplace=True)
+    df_test['longitude'].fillna(df_test.groupby(['region', 'district_code'])['longitude'].transform('mean'), inplace=True)
+    df_test['longitude'].fillna(df_test.groupby(['region'])['longitude'].transform('mean'), inplace=True)
+    df_test['construction_year'].fillna(df_test.groupby(['region', 'district_code'])['construction_year'].transform('median'), inplace=True)
+    df_test['construction_year'].fillna(df_test.groupby(['region'])['construction_year'].transform('median'), inplace=True)
+    df_test['construction_year'].fillna(df_test.groupby(['district_code'])['construction_year'].transform('median'), inplace=True)
+    df_test['construction_year'].fillna(df_test['construction_year'].median(), inplace=True)
+    df_test['date_recorded'] = pd.to_datetime(df_test['date_recorded'])
+    df_test['years_service'] = df_test.date_recorded.dt.year - df_test.construction_year
+    
+    df_test.drop(columns=['date_recorded'])
+   
+    
+    return df_test
+
+clean_test = CleanTest(X_test)
+clean_test= clean_test.drop(columns=['date_recorded'])
+clean_test.head()
+```
+|  |     id | amount_tsh | funder | gps_height | installer | longitude | latitude | wpt_name | num_private | basin | subvillage | region | region_code | district_code | lga |  ward | population | public_meeting | recorded_by | scheme_management | scheme_name | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment | payment_type | water_quality | quality_group | quantity | quantity_group | source | source_type | source_class | waterpoint_type | waterpoint_type_group | years_service |
+| - | ------ | ---------- | ------ | ---------- | --------- | --------- | -------- | -------- | ----------- | ----- | ---------- | ------ | ----------- | ------------- | --- | ----- | ---------- | -------------- | ----------- | ----------------- | ----------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ---------- | ---------------- | ------- | ------------ | ------------- | ------------- | -------- | -------------- | ------ | ----------- | ------------ | --------------- | --------------------- | ------------- |
+| 0 | 50785 |         20 |    164 |      1,996 |       342 |   35.291… |  -4.060… |       -1 |       False |     5 |     10,944 |      3 |          21 |             3 |  38 |   574 |        321 |              1 |        True |                10 |           2 |      2 |             2,012 |               6 |                     6 |                     4 |          9 |                4 |       2 |            2 |          True |          True |        4 |              4 |      2 |           2 |            2 |               4 |                     3 |           -42 |
+| 1 | 51630 |         30 |     21 |      1,569 |         6 |   36.657… |  -3.309… |       -1 |       False |     3 |         -1 |     17 |           2 |             2 |  27 |   368 |        300 |              1 |        True |                 1 |         417 |      2 |             2,000 |               1 |                     1 |                     1 |          1 |                1 |       2 |            2 |          True |          True |        2 |              2 |      1 |           1 |            1 |               1 |                     1 |           -30 |
+| 2 | 17168 |         50 |     26 |      1,567 |        20 |   34.768… |  -5.004… |   21,519 |       False |     5 |      7,345 |     19 |          13 |             2 |  33 |   648 |        500 |              1 |        True |                 1 |         938 |      3 |             2,010 |               6 |                     6 |                     4 |          1 |                1 |       2 |            2 |          True |          True |        2 |              2 |      2 |           2 |            2 |               4 |                     3 |           -40 |
+| 3 | 45559 |         50 |    145 |        267 |       131 |   38.058… |  -9.419… |       -1 |       False |     4 |      5,580 |     15 |          80 |            43 | 106 | 1,796 |        250 |              2 |        True |                 1 |           2 |      2 |             1,987 |               6 |                     6 |                     4 |          1 |                1 |       4 |            4 |          True |          True |        3 |              3 |      6 |           6 |            1 |               4 |                     3 |           -17 |
+| 4 | 49871 |        500 |  1,038 |      1,260 |     1,133 |   35.006… | -10.950… |    2,985 |       False |     4 |      2,891 |     10 |          10 |             3 |  98 |   654 |         60 |              2 |        True |                 6 |         319 |      2 |             2,000 |               1 |                     1 |                     1 |          5 |                1 |       7 |            7 |          True |          True |        1 |              1 |      1 |           1 |            1 |               1 |                     1 |           -30 |
 
 ### XGBoost Classification on Test Train Split Dataset with GridSearchCV and adjusted Hyper-parameters.
 
