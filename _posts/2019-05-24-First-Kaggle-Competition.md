@@ -85,6 +85,8 @@ pd.options.display.max_columns = 40
 train_features.head()
 ```
 
+
+
 |  |     id | amount_tsh | date_recorded | funder       | gps_height | installer    | longitude | latitude | wpt_name             | num_private | basin                   | subvillage | region  | region_code | district_code | lga       | ward       | population | public_meeting | recorded_by             | scheme_management | scheme_name                 | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management | management_group | payment        | payment_type | water_quality | quality_group | quantity     | quantity_group | source               | source_type          | source_class | waterpoint_type             | waterpoint_type_group |
 | - | ------ | ---------- | ------------- | ------------ | ---------- | ------------ | --------- | -------- | -------------------- | ----------- | ----------------------- | ---------- | ------- | ----------- | ------------- | --------- | ---------- | ---------- | -------------- | ----------------------- | ----------------- | --------------------------- | ------ | ----------------- | --------------- | --------------------- | --------------------- | ---------- | ---------------- | -------------- | ------------ | ------------- | ------------- | ------------ | -------------- | -------------------- | -------------------- | ------------ | --------------------------- | --------------------- |
 | 0 | 69572 |      6,000 |    2011-03-14 | Roman        |      1,390 | Roman        |   34.938… |  -9.856… |                      |       False | Lake Nyasa              | Mnyusi B   | Iringa  |          11 |             5 | Ludewa    | Mundindi   |        109 | True           | GeoData Consultants Ltd | VWC               | Roman                       |  False |             1,999 | gravity         | gravity               | gravity               | vwc        | user-group       | pay annually   | annually     | soft          | good          | enough       | enough         | spring               | spring               | groundwater  | communal standpipe          | communal standpipe    |
@@ -95,11 +97,17 @@ train_features.head()
 
 
 
+
+
+
 ```python
 train_labels = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/train_labels.csv.zip')
 
 train_labels.head()
 ```
+
+
+
 
 
 |   |    id  | status_group   |
@@ -112,12 +120,19 @@ train_labels.head()
 
 
 
+
+
+
 ```python
 
 test_features = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/test_features.csv.zip')
 pd.options.display.max_columns = 40
 test_features.head()
 ```
+
+
+
+
 
 
 |   |     id | amount_tsh | date_recorded | funder                 | gps_height | installer  | longitude | latitude | wpt_name                | num_private | basin                   | subvillage | region  | region_code | district_code | lga           | ward         | population | public_meeting | recorded_by             | scheme_management | scheme_name    | permit | construction_year | extraction_type | extraction_type_group | extraction_type_class | management  | management_group | payment     | payment_type | water_quality | quality_group | quantity     | quantity_group | source               | source_type          | source_class | waterpoint_type    | waterpoint_type_group |
