@@ -770,6 +770,4 @@ One final Partial Dependence Plot with the features of 'qunatity' and 'basin'.
 
 ![2 Features PDP](/img/2feats-PDP.png)
 
-
-
 ## Conclusion
