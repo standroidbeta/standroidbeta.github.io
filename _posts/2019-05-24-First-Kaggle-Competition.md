@@ -261,7 +261,7 @@ submission['status_group'] = y_pred
 submission.to_csv('baseline.csv', index=False)
 ```
 She's all saved. Now let's upload this puppy to Kaggle.
-````python
+```python
 !kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f baseline.csv -m "Xgb baseline"
 ```
 
