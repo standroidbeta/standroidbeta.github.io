@@ -764,4 +764,12 @@ pdp_plot(isolated, feature_name=feature);
 ```
 ![PDP-plot](/img/PDP_plot.png)
 
+### Partial Depedence Plot with Two Features
+
+One final Partial Dependence Plot with the features of 'qunatity' and 'basin'.
+
+![2 Features PDP](/img/2feats-PDP.png)
+
+
+
 ## Conclusion
