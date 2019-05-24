@@ -500,9 +500,185 @@ clean_test.head()
 | 3 | 45559 |         50 |    145 |        267 |       131 |   38.058… |  -9.419… |       -1 |       False |     4 |      5,580 |     15 |          80 |            43 | 106 | 1,796 |        250 |              2 |        True |                 1 |           2 |      2 |             1,987 |               6 |                     6 |                     4 |          1 |                1 |       4 |            4 |          True |          True |        3 |              3 |      6 |           6 |            1 |               4 |                     3 |           -17 |
 | 4 | 49871 |        500 |  1,038 |      1,260 |     1,133 |   35.006… | -10.950… |    2,985 |       False |     4 |      2,891 |     10 |          10 |             3 |  98 |   654 |         60 |              2 |        True |                 6 |         319 |      2 |             2,000 |               1 |                     1 |                     1 |          5 |                1 |       7 |            7 |          True |          True |        1 |              1 |      1 |           1 |            1 |               1 |                     1 |           -30 |
 
-### XGBoost Classification on Test Train Split Dataset with GridSearchCV and adjusted Hyper-parameters.
+Okay now time to assign variable and have another helping of train test split and  verify our dataframe shapes.
+```python
+X_train = clean_train
+X_test = clean_test
+
+features = X_train
+target = y_train
+
+X = features
+y = target
+
+X.shape, y.shape
+
+
+((44550, 40), (44550,))
+```
+Now doing the split
+```python
+X_train, X_val, y_train, y_val = train_test_split(
+    X_train, y_train, random_state=42, stratify=y_train)
+```
+### XGBoost Classification on Test Train Split Dataset with GridSearchCV and adjusted Hyper-parameters
+
+We are ready now ready for the final model.
+
+```python
+from sklearn.model_selection import GridSearchCV
+encoder = ce.OrdinalEncoder()
+X_train = encoder.fit_transform(X_train)
+
+param_grid = {'learning_rate': [0.075, 0.07],
+                      'max_depth': [6, 7],
+                      'min_samples_leaf': [7,8],
+                      'max_features': [1.0],
+                      'n_estimators':[100, 200]} 
+
+search = GridSearchCV(
+    estimator=XGBClassifier(n_jobs=-1, random_state=42), 
+    param_grid=param_grid, 
+    scoring='accuracy', 
+    n_jobs=-1, 
+    cv=10, 
+    verbose=10, 
+    return_train_score=True,
+)
+
+search.fit(X_train, y_train)
+
+Fitting 10 folds for each of 16 candidates, totalling 160 fits
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 12 concurrent workers.
+[Parallel(n_jobs=-1)]: Done   1 tasks      | elapsed:   38.8s
+[Parallel(n_jobs=-1)]: Done   8 tasks      | elapsed:   40.0s
+[Parallel(n_jobs=-1)]: Done  17 tasks      | elapsed:  2.1min
+[Parallel(n_jobs=-1)]: Done  26 tasks      | elapsed:  2.2min
+[Parallel(n_jobs=-1)]: Done  37 tasks      | elapsed:  3.6min
+[Parallel(n_jobs=-1)]: Done  48 tasks      | elapsed:  4.5min
+[Parallel(n_jobs=-1)]: Done  61 tasks      | elapsed:  6.2min
+[Parallel(n_jobs=-1)]: Done  74 tasks      | elapsed:  7.9min
+[Parallel(n_jobs=-1)]: Done  89 tasks      | elapsed:  8.8min
+[Parallel(n_jobs=-1)]: Done 104 tasks      | elapsed: 10.3min
+[Parallel(n_jobs=-1)]: Done 121 tasks      | elapsed: 12.0min
+[Parallel(n_jobs=-1)]: Done 154 out of 160 | elapsed: 16.0min remaining:   37.4s
+[Parallel(n_jobs=-1)]: Done 160 out of 160 | elapsed: 16.1min finished
+
+GridSearchCV(cv=10, error_score='raise-deprecating',
+             estimator=XGBClassifier(base_score=0.5, booster='gbtree',
+                                     colsample_bylevel=1, colsample_bytree=1,
+                                     gamma=0, learning_rate=0.1,
+                                     max_delta_step=0, max_depth=3,
+                                     min_child_weight=1, missing=None,
+                                     n_estimators=100, n_jobs=-1, nthread=None,
+                                     objective='binary:logistic',
+                                     random_state=42, reg_alpha=0, reg_lambda=1,
+                                     scale_pos_weight=1, seed=None, silent=True,
+                                     subsample=1),
+             iid='warn', n_jobs=-1,
+             param_grid={'learning_rate': [0.075, 0.07], 'max_depth': [6, 7],
+                         'max_features': [1.0], 'min_samples_leaf': [7, 8],
+                         'n_estimators': [100, 200]},
+             pre_dispatch='2*n_jobs', refit=True, return_train_score=True,
+             scoring='accuracy', verbose=10)
+```
+I decided to change things up on this third model because I wanted to see if doing a GridSearchCV would get me just enough of a bump in accracy to be at 80%. 
+
+Hmmm....where will we land.?
+
+Let's put the pieces together and find out.
+```python
+search.score(X_train, y_train)
+
+0.8595414821022387
+```
+Whoa, could it be true? Did we really get a score of not just 80% but 85%? That can't be right. Let's check to be sure.
+```python
+estimator = search.best_estimator_
+estimator
+
+:
+XGBClassifier(base_score=0.5, booster='gbtree', colsample_bylevel=1,
+              colsample_bytree=1, gamma=0, learning_rate=0.07, max_delta_step=0,
+              max_depth=7, max_features=1.0, min_child_weight=1,
+              min_samples_leaf=7, missing=None, n_estimators=200, n_jobs=-1,
+              nthread=None, objective='multi:softprob', random_state=42,
+              reg_alpha=0, reg_lambda=1, scale_pos_weight=1, seed=None,
+              silent=True, subsample=1)
+```
+```python
+best = search.best_score_
+best
+
+0.7925894888064169
+
+```
+So it was too good to be true but it is an improvement non-the-less. So we were are going to submit one last time.
+
+```python
+
+X_train = encoder.fit_transform(X_train)
+params = search.best_params_
+
+X_test = encoder.transform(X_test)
+y_pred = search.predict(X_test)
+
+
+y_pred
+
+
+array(['functional', 'functional', 'functional', ..., 'functional',
+       'functional', 'non functional'], dtype=object)
+```
+```python
+submission3 = pd.read_csv('/home/seek/Documents/GitHub/DS-Project-2---Predictive-Modeling-Challenge/sample_submission.csv')
+submission3 = submission3.copy()
+submission3['status_group'] = y_pred
+submission3.to_csv('clean_grid.csv', index=False)
+```
+```python
+!kaggle  competitions  submit -c ds3-predictive-modeling-challenge -f clean_grid.csv -m "Xgb clean Gridsearch"
+
+100%|█████████████████████████████████████████| 260k/260k [00:00<00:00, 318kB/s]
+Successfully submitted to DS3 Predictive Modeling Challenge
+```
 
 ### Hey! Here is Another Model Confusion Matrix for Some More Clarification.
+
+And so since we have three models we are going to look at one more confusion matrix
+
+```python
+
+X_train_encoded = encoder.fit_transform(X_train)
+X_test_encoded = encoder.fit_transform(X_test)
+X_val_encoded = encoder.fit_transform(X_val)
+```
+```python
+y_pred = search.predict(X_val_encoded)
+print(classification_report(y_val, y_pred))
+
+
+columns = [f'Predicted {label}' for label in np.unique(y_val)]
+index = [f'Actual {label}' for label in np.unique(y_val)]
+pd.DataFrame(confusion_matrix(y_val, y_pred), columns=columns, index=index)
+
+
+                         precision    recall  f1-score   support
+
+             functional       0.77      0.91      0.84      6049
+functional needs repair       0.64      0.23      0.34       809
+         non functional       0.84      0.73      0.78      4280
+
+               accuracy                           0.79     11138
+              macro avg       0.75      0.62      0.65     11138
+           weighted avg       0.79      0.79      0.78     11138
+```
+| a                              | Predicted functional | Predicted functional needs repair | Predicted non functional |
+| ------------------------------ | -------------------- | --------------------------------- | ------------------------ |
+| Actual functional              |                5,526 |                                62 |                      461 |
+| Actual functional needs repair |                  483 |                               185 |                      141 |
+| Actual non functional          |                1,131 |                                44 |                    3,105 |
+
 
 ## Here Are Some Fun but Simple Visualizations for Your Pleasure.
 
