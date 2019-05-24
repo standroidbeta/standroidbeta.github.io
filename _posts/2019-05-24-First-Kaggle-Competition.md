@@ -762,6 +762,6 @@ isolated = pdp_isolate(model=search, dataset=X_test, model_features=X_test.colum
 
 pdp_plot(isolated, feature_name=feature);
 ```
-![PDP_plot](/img/PDP_plot.png)
+![PDP-plot](/img/PDP_plot.png)
 
 ## Conclusion
