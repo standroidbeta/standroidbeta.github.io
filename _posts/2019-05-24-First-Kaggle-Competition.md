@@ -771,3 +771,9 @@ One final Partial Dependence Plot with the features of 'qunatity' and 'basin'.
 ![2 Features PDP](/img/2feats-PDP.png)
 
 ## Conclusion
+
+This challenge taught me alot about how important it that the water pumps in Tanzania are and that doing crazy amounts of feature engineering is always neccessary. 
+
+This dataset seemed to have a fair amount of NaN values. There also seemed to be additional values that looked like would result in a fair amount of outlier data and skewing of the data but it appears that XGBoost did a good job of not letting those hurdles to get in the way of finding a good accuracy score. 
+
+Thank you for taking the time to join me in my endeavor. My next project will be a Data Science Engineering one in which i am super excited about.
