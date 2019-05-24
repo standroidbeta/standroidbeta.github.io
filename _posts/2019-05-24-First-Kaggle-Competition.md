@@ -29,7 +29,7 @@ _Taarifa is an open source platform for the crowd sourced reporting and triaging
 
 Go here to get the complete Kaggle challenge info.
 
-https://www.kaggle.com/c/ds3-predictive-modeling-challenge/overview
+[Kaggle](https://www.kaggle.com/c/ds3-predictive-modeling-challenge/overview)
 
 ## Here are some data points
 
