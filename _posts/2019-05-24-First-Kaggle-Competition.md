@@ -121,6 +121,24 @@ test_features.head()
 | 3 | 45559 |          0 |    2013-01-22 | Finn Water             |        267 | FINN WATER |   38.058… |  -9.419… | Kwa Mzee Pange          |       False | Ruvuma / Southern Coast | Kipindimbi | Lindi   |          80 |            43 | Liwale        | Mkutano      |        250 | NaN            | GeoData Consultants Ltd | VWC               | NaN            | True   |             1,987 | other           | other                 | other                 | vwc         | user-group       | unknown     | unknown      | soft          | good          | dry          | dry            | shallow well         | shallow well         | groundwater  | other              | other                 |
 | 4 | 49871 |        500 |    2013-03-27 | Bruder                 |      1,260 | BRUDER     |   35.006… | -10.950… | Kwa Mzee Turuka         |       False | Ruvuma / Southern Coast | Losonga    | Ruvuma  |          10 |             3 | Mbinga        | Mbinga Urban |         60 | NaN            | GeoData Consultants Ltd | Water Board       | BRUDER         | True   |             2,000 | gravity         | gravity               | gravity               | water board | user-group       | pay monthly | monthly      | soft          | good          | enough       | enough         | spring               | spring               | groundwater  | communal standpipe | communal standpipe    |
 
+Assigning training and test variables
+
+```python
+X_train = train_features
+X_test = test_features
+y_train = train_labels['status_group']
+
+```
+Getting initial label counts
+```python
+
+y_train.value_counts(normalize=True)
+```
+functional                 0.543081
+non functional             0.384242
+functional needs repair    0.072677
+Name: status_group, dtype: float64
+
       
 ## First Baseline Model Prediction
 
